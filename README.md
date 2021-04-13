@@ -1,1 +1,1 @@
-# winc-back-end-development
+# Assignments for Winc Back-end Development Course
