@@ -4,13 +4,15 @@ __human_name__ = 'strings'
 
 # Add your code after this line
 
-scored = ['Ruud Gullit', 'Marco van Basten']
-when = [32, 54]
+scorer_0 = 'Ruud Gullit'
+scorer_1 = 'Marco van Basten'
+goal_0 = 32
+goal_1 = 54
 
-scorers = scored[0] + ' ' + str(when[0]) + ', ' + scored[1] + ' ' + str(when[1])
+scorers = scorer_0 + ' ' + str(goal_0) + ', ' + scorer_1 + ' ' + str(goal_1)
 print(scorers)
 
-report = f'{scored[0]} scored in the {when[0]}nd minute\n{scored[1]} scored in the {when[1]}th minute'
+report = f'{scorer_0} scored in the {goal_0}nd minute\n{scorer_1} scored in the {goal_1}th minute'
 print(report)
 
 player = 'Ronald Koeman'
@@ -26,5 +28,5 @@ print(name_short)
 chant = ((player[:player.find(' ')] + '! ') * len(player[:player.find(' ')])).strip()
 print(chant)
 
-good_chant = chant
-print(good_chant) # ;)
+good_chant = chant[-1:] != ' '
+print(good_chant)
