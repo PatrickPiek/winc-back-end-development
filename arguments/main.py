@@ -7,6 +7,7 @@ __human_name__ = 'arguments'
 # 1
 
 
+# template
 def greet(name='stranger', template='Hello, <name>!'):
     return template.replace('<name>', name)
 
@@ -27,7 +28,7 @@ def force(mass=0, body='earth'):
         'neptune': 11.15,
         'uranus': 8.87,
         'pluto': 9.8
-    }
+    }  # body: surface gravity
 
     return round(mass * bodies[body], 1)
 
@@ -35,9 +36,8 @@ def force(mass=0, body='earth'):
 
 
 def pull(m1, m2, d):
-    G = 6.674 * (10 ** -11)
-    pull = G * ((m1 * m2) / (d ** 2))
-    return pull
+    G = 6.674 * (10 ** -11)  # G = gravity constant
+    return G * ((m1 * m2) / (d ** 2))  # formula for gravitational pull
 
 
 if __name__ == '__main__':
