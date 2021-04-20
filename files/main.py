@@ -24,7 +24,7 @@ def clean_cache():
         mkdir(CACHE)
         if exists(CACHE) and isdir(CACHE):
             return CACHE  # cache path string
-        return ''  # empty (tring
+        return ''  # empty string
     except OSError:
         print(f'Unable to make directory: {CACHE}')
 
@@ -62,9 +62,8 @@ def find_password(cached_files):
     return ''  # an empty string when not found
 
 
-if __name__ == '__main__':
+def main():
 
-    # calls here
     cache = clean_cache()
     zipfile = abspath('./data.zip')
 
@@ -75,3 +74,9 @@ if __name__ == '__main__':
     print(password)
 
     cache = clean_cache()
+
+
+if __name__ == '__main__':
+
+    # calls here
+    main()
