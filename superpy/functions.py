@@ -24,6 +24,10 @@ def generate_ean13(prefix=[]):
             elif isinstance(digit, str) and digit.isdigit():
                 digit = code.append(int(digit))
 
+            # raise TypeError if digit is some other character
+            else:
+                raise TypeError('Only digits allowed')
+
     # add up to 12 random digits to complete code
     while len(code) < 12:
         code.append(random.randint(0, 9))
