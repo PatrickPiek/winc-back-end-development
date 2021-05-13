@@ -6,10 +6,16 @@ import argparse
 
 def is_valid_date(s):
     try:
-        return datetime.strptime(s, "%Y-%m-%d")
+        return datetime.strptime(s, "%Y")
     except ValueError:
-        msg = "Not a valid date: '{0}'.".format(s)
-        raise argparse.ArgumentTypeError(msg)
+        try:
+            return datetime.strptime(s, "%Y-%m")
+        except ValueError:
+            try:
+                return datetime.strptime(s, "%Y-%m-%d")
+            except ValueError:
+                msg = "Not a valid date: '{0}'.".format(s)
+                raise argparse.ArgumentTypeError(msg)
 
 
 def main():

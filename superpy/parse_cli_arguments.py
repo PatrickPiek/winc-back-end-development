@@ -8,11 +8,11 @@ def parse_cli_arguments():
 
     cli.add_argument('action', type=str, action='store', metavar='action',
                      help='the action to perform (buy, sell, report, time)',
-                     choices=['buy', 'sell', 'report', 'time', 'revenue'])
+                     choices=['buy', 'sell', 'report', 'time'], nargs='?')
 
-    cli.add_argument('report', type=str, action='store', metavar='action',
+    cli.add_argument('report', type=str, action='store', metavar='report',
                      help='the report action to perform (revenue, profit)',
-                     choices=['revenue', 'profit'])
+                     choices=['revenue', 'profit'], nargs='?')
 
     cli.add_argument('--product-name', type=str, action='store', metavar='',
                      help='the name of the product to buy or sell')
