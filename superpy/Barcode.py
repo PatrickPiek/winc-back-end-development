@@ -1,7 +1,7 @@
 import random
 
 
-class Ean13Code():
+class Barcode():
 
     def __init__(self, prefix=[]):
 

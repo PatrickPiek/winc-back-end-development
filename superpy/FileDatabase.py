@@ -2,7 +2,7 @@ import csv
 from os.path import abspath, isfile, exists
 
 
-class Database():
+class FileDatabase():
 
     def __init__(self, filename='', columns=[]):
 

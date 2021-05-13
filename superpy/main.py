@@ -1,23 +1,22 @@
-# Imports
+
 import csv
 from datetime import date
-from class__Database import Database
-from class__Ean13Code import Ean13Code
-from parse_cli_arguments import parse_cli_arguments
 
-# Do not change these lines.
+from FileDatabase import FileDatabase
+from Barcode import Barcode
+from CommandLineArgs import CommandLineArgs
+from Route import Route
+
 __winc_id__ = 'a2bc36ea784242e4989deb157d527ba0'
 __human_name__ = 'superpy'
 
 
-# Your code below this line.
-
 def main():
 
-    # code = Ean13Code()
+    # code = Barcode()
     # print(vars(code), code)
 
-    # products = Database('products.csv', ['name', 'department', 'birthday'])
+    # products = FileDatabase('products.csv', ['name', 'department', 'birthday'])
     # print(vars(products))
     # products.add(
     #     {'name': 'Leon Rijsdam 2', 'department': 'IT', 'birthday': '1977-07-23'})
@@ -25,10 +24,9 @@ def main():
     # print(vars(products))
     # products.save()
 
-    args = parse_cli_arguments()
-    print(vars(args))
-
-    pass
+    args = CommandLineArgs()
+    route = Route(args.vars)
+    route.route()
 
 
 if __name__ == '__main__':
