@@ -1,7 +1,7 @@
 from datetime import datetime
 import argparse
 
-# source: https://stackoverflow.com/questions/25470844/specify-date-format-for-python-argparse-input-arguments
+# adapted from: https://stackoverflow.com/questions/25470844/specify-date-format-for-python-argparse-input-arguments
 
 
 def is_valid_date(s):

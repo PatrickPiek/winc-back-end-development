@@ -1,7 +1,7 @@
 import unittest
 import math
 
-from classes import Ean13Code
+from class__Ean13Code import Ean13Code
 
 
 class test_generate_ean13(unittest.TestCase):

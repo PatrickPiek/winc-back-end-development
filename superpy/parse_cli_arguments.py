@@ -1,5 +1,5 @@
 import argparse
-from functions import is_valid_date
+from function__is_valid_date import is_valid_date
 
 
 def parse_cli_arguments():
