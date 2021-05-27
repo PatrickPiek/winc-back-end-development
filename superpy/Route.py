@@ -3,6 +3,7 @@ from make_date import make_date
 from format_date import format_date
 from datetime import datetime
 from datetime import timedelta
+import config
 
 
 class Route():
@@ -40,16 +41,9 @@ class Route():
 
     def buy(self):
 
-        # super.py buy --product-name orange --price 0.8 --expiration-date 2020-01-01
+        # python super.py buy --product-name orange --price 0.8 --expiration-date 2020-01-01
 
-        bought = FileDatabase(
-            'bought.csv', [
-                'id',               # number, auto increment from 1
-                'product_name',     # string
-                'buy_date',         # date in yyyy-mm-dd
-                'buy_price',        # float
-                'expiration_date',  # date in yyyy-mm-dd
-            ])
+        bought = FileDatabase(config.BOUGHT_FILENAME, config.BOUGHT_FIELDS)
 
         bought.add(
             {
@@ -64,24 +58,10 @@ class Route():
 
     def sell(self):
 
-        # super.py sell --product-name orange --price 2
+        # python super.py sell --product-name orange --price 2
 
-        bought = FileDatabase(
-            'bought.csv', [
-                'id',               # number, auto increment from 1
-                'product_name',     # string
-                'buy_date',         # date in yyyy-mm-dd
-                'buy_price',        # float
-                'expiration_date',  # date in yyyy-mm-dd
-            ])
-
-        sold = FileDatabase(
-            'sold.csv', [
-                'id',               # number, auto increment from 1
-                'bought_id',        # string
-                'sell_date',        # date in yyyy-mm-dd
-                'sell_price',       # float
-            ])
+        bought = FileDatabase(config.BOUGHT_FILENAME, config.BOUGHT_FIELDS)
+        sold = FileDatabase(config.SOLD_FILENAME, config.SOLD_FIELDS)
 
         bought_id = None
         for b in bought.data:
@@ -114,19 +94,16 @@ class Route():
 
     def date(self, value=0):
 
-        date = FileDatabase(
-            'date.csv', [
-                'date',             # date in yyyy-mm-dd
-            ])
+        # super.py --advance-time 2
+
+        date = FileDatabase(config.DATE_FILENAME, config.DATE_FIELDS)
 
         today = datetime.now()
 
         if value > 0:
             today = today + timedelta(days=value)
 
-        today = datetime.strftime(today, "%Y-%m-%d")
-
-        date.data = [{'date': today}]
+        date.data = [{'date': format_date(today)}]
         date.save()
 
         print('OK')
