@@ -1,6 +1,6 @@
 import unittest
 from datetime import datetime
-from is_valid_date import is_valid_date
+from functions import is_valid_date
 
 
 class Test(unittest.TestCase):

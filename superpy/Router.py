@@ -22,23 +22,29 @@ class Router():
     def route(self):
 
         if self.action == 'buy':
-            Buy(self.args).execute()
+            response = Buy(self.args).run()
 
         if self.action == 'sell':
-            Sell(self.args).execute()
+            response = Sell(self.args).run()
 
         if self.action == 'report':
             if self.report == 'inventory':
-                Inventory(self.args).report()
+                response = Inventory(self.args).run()
 
             if self.report == 'revenue':
-                Revenue(self.args).report()
+                response = Revenue(self.args).run()
 
             if self.report == 'profit':
-                Profit(self.args).report()
+                response = Profit(self.args).run()
 
-        if self.args['advance_time'] is not None:
-            Today(self.args).set()
+        if self.args['advance_time'] != None:
+            response = Today(self.args).run()
+
+        if response != '':
+            print(response)
+
+        if(response[:5] == 'ERROR'):
+            sys.exit(1)
 
         sys.exit(0)
 

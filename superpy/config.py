@@ -31,7 +31,7 @@ SOLD_FIELDS = [
 
 TODAY_FILE = 'db_today.csv'
 TODAY_FIELDS = [
-    'today',             # date in yyyy-mm-dd
+    'today',            # date in yyyy-mm-dd
 ]
 
 DATE_FIELDS = [
@@ -39,3 +39,5 @@ DATE_FIELDS = [
     'sell_date',
     'expiration_date',
 ]
+
+DATE_FORMAT = '%Y-%m-%d'

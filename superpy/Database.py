@@ -41,7 +41,7 @@ class Database():
                 for column in self.columns:
                     if column in config.DATE_FIELDS:
                         rowdata[column] = datetime.strptime(
-                            row[column], "%Y-%m-%d")
+                            row[column], config.DATE_FORMAT)
                     else:
                         rowdata[column] = row[column]
                 data.append(rowdata)

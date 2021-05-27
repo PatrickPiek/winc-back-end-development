@@ -3,7 +3,7 @@
 import config
 from Database import Database
 from Today import Today
-from format_date import format_date
+from functions import format_date
 
 
 class Buy():
@@ -11,21 +11,21 @@ class Buy():
     def __init__(self, args):
 
         self.args = args
-        self.bought = Database(
+        self.database = Database(
             config.BOUGHT_FILE, config.BOUGHT_FIELDS)
 
-    def execute(self):
+    def run(self):
 
-        self.bought.add(
+        self.database.add(
             {
-                'id':               self.bought.rowcount + 1,
+                'id':               self.database.rowcount + 1,
                 'product_name':     self.args['product_name'],
-                'buy_date':         Today({}).get(),
+                'buy_date':         Today().get_date(),
                 'buy_price':        self.args['price'],
                 'expiration_date':  format_date(self.args['expiration_date']),
             })
 
-        print('OK')
+        return 'OK'
 
 
 def main():

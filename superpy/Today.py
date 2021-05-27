@@ -2,27 +2,26 @@
 
 from datetime import datetime
 from datetime import timedelta
-
 import config
 from Database import Database
-from format_date import format_date
+from functions import format_date
 
 
 class Today():
 
-    def __init__(self, args):
+    def __init__(self, args={}):
 
         self.args = args
-        self.database = Database(config.TODAY_FILE, config.TODAY_FIELDS)
+        self.today = Database(config.TODAY_FILE, config.TODAY_FIELDS)
 
         try:
-            hasattr(self.database.data[0], 'today')
+            hasattr(self.today.data[0], 'today')
         except:
             self.args['advance_time'] = 0
             self.args['init'] = True
-            self.set()
+            self.run()
 
-    def set(self):
+    def run(self):
 
         today = datetime.now()
 
@@ -31,17 +30,17 @@ class Today():
         if days > 0:
             today = today + timedelta(days=days)
 
-        self.database.data = [{'today': format_date(today)}]
-        self.database.save()
+        self.today.data = [{'today': format_date(today)}]
+        self.today.save()
 
         if hasattr(self.args, 'init'):
-            return
+            return ''
 
-        print('OK')
+        return 'OK'
 
-    def get(self):
+    def get_date(self):
 
-        return self.database.data[0]['today']
+        return self.today.data[0]['today']
 
 
 def main():

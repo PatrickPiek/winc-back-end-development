@@ -3,7 +3,7 @@
 import sys
 import config
 from Database import Database
-from make_date import make_date
+from Today import Today
 
 
 class Sell():
@@ -11,40 +11,39 @@ class Sell():
     def __init__(self, args):
 
         self.args = args
-        self.bought = Database(
+        self.database_bought = Database(
             config.BOUGHT_FILE, config.BOUGHT_FIELDS)
-        self.sold = Database(
+        self.database_sold = Database(
             config.SOLD_FILE, config.SOLD_FIELDS)
 
-    def execute(self):
+    def run(self):
 
         bought_id = self.get_bought_id()
 
         if bought_id == None:
-            print('ERROR: Product not in stock')
-            sys.exit(1)
+            return 'ERROR: Product not in stock'
 
-        self.sold.add(
+        self.database_sold.add(
             {
-                'id':               self.sold.rowcount + 1,
-                'bought_id':        bought_id,
-                'sell_date':        make_date(),
-                'sell_price':       self.args['price'],
+                'id': self.database_sold.rowcount + 1,
+                'bought_id': bought_id,
+                'sell_date': Today().get_date(),
+                'sell_price': self.args['price'],
             })
 
-        print('OK')
+        return 'OK'
 
     def get_bought_id(self):
         bought_id = None
 
-        for b in self.bought.data:
+        for b in self.database_bought.data:
             if b['product_name'] == self.args['product_name']:
-                if self.sold.rowcount == 0:
+                if self.database_sold.rowcount == 0:
                     bought_id = b['id']
                     break
                 else:
                     sold_state = False
-                    for s in self.sold.data:
+                    for s in self.database_sold.data:
                         if b['id'] == s['bought_id']:
                             sold_state = True
                     if sold_state == False:

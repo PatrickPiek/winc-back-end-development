@@ -5,7 +5,7 @@ from datetime import timedelta
 
 import config
 from Database import Database
-from format_date import format_date
+from functions import format_date
 
 
 class Revenue():
@@ -13,9 +13,9 @@ class Revenue():
     def __init__(self, args):
 
         self.args = args
-        self.database = Database(config.DATE_FILE, config.DATE_FIELDS)
+        self.database = Database(config.TODAY_FILE, config.TODAY_FIELDS)
 
-    def report(self):
+    def run(self):
 
         print(self.args)
 
@@ -29,7 +29,7 @@ class Revenue():
         self.database.data = [{'date': format_date(today)}]
         self.database.save()
 
-        print('OK')
+        return 'OK'
 
 
 def main():

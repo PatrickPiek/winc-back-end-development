@@ -8,11 +8,10 @@ from Today import Today
 
 def main():
 
-    Today({})  # needed for all references to today’s date
+    Today().get_date()
 
     arguments = Arguments()
     router = Router(arguments.vars)
-
     router.route()
 
 

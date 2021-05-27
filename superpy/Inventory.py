@@ -4,7 +4,7 @@
 import config
 from Database import Database
 from Today import Today
-from format_date import format_date
+from functions import format_date
 from datetime import datetime
 from datetime import timedelta
 from tabulate import tabulate
@@ -21,17 +21,17 @@ class Inventory():
         self.sold = Database(
             config.SOLD_FILE, config.SOLD_FIELDS)
 
-        date = Today({}).get()
-        date = datetime.strptime(date, "%Y-%m-%d")
+        date = Today().get_date()
+        date = datetime.strptime(date, config.DATE_FORMAT)
 
         if self.args['yesterday'] == True:
-            date = Today({}).get()
-            date = datetime.strptime(date, "%Y-%m-%d")
+            date = Today().get_date()
+            date = datetime.strptime(date, config.DATE_FORMAT)
             date = date + timedelta(days=-1)
 
         self.date = date
 
-    def report(self):
+    def run(self):
 
         # collect all items that are not yet sold
 
@@ -67,12 +67,13 @@ class Inventory():
         #             if inventory_item == report_item:
         #                 #  split array and merge arrays
 
-        print(self.date)
-        print(tabulate(
+        # print(self.date)
+
+        return tabulate(
             inventory,
             headers='keys',
             tablefmt='grid'
-        ))
+        )
 
 
 def main():
