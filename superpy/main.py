@@ -20,13 +20,14 @@ def main():
     # print(vars(products))
     # products.add(
     #     {'name': 'Leon Rijsdam 2', 'department': 'IT', 'birthday': '1977-07-23'})
-
+    # products.append(
+    #     {'name': 'Leon Rijsdam 4', 'department': 'IT', 'birthday': '1977-07-23'})
     # print(vars(products))
     # products.save()
 
-    args = CommandLineArgs()
-    route = Route(args.vars)
-    route.route()
+    # args = CommandLineArgs()
+    # route = Route(args.vars)
+    # route.route()
 
 
 if __name__ == '__main__':

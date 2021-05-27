@@ -45,9 +45,12 @@ class FileDatabase():
 
     def save(self):
 
-        with open(self.filepath, 'w+') as csv_file:
+        with open(self.filepath, mode='w+') as csv_file:
 
-            file_ref = csv.DictWriter(csv_file, fieldnames=self.columns)
+            file_ref = csv.DictWriter(
+                csv_file, fieldnames=self.columns, delimiter=',', doublequote=True, escapechar='\\',
+                lineterminator='\r\n', quotechar='"', quoting=csv.QUOTE_MINIMAL, skipinitialspace=True,
+                strict=True)
 
             file_ref.writeheader()
 
@@ -70,6 +73,20 @@ class FileDatabase():
         if row not in self.data:
             self.data.append(row)
             self.rowcount = len(self.data)
+
+    def append(self, row={}):
+
+        if row not in self.data:
+            self.add(row)
+
+            with open(self.filepath, mode='a') as csv_file:
+
+                file_ref = csv.DictWriter(
+                    csv_file, fieldnames=self.columns, delimiter=',', doublequote=True, escapechar='\\',
+                    lineterminator='\r\n', quotechar='"', quoting=csv.QUOTE_MINIMAL, skipinitialspace=True,
+                    strict=True)
+
+                file_ref.writerow(row)
 
     def create(self):
 
