@@ -3,15 +3,16 @@ from datetime import datetime
 # adapted from: https://stackoverflow.com/questions/25470844/specify-date-format-for-python-argparse-input-arguments
 
 
-def is_valid_date(s):
+def is_valid_date(date_string=''):
+
     try:
-        return datetime.strptime(s, "%Y")
+        return datetime.strptime(date_string, "%Y")
     except ValueError:
         try:
-            return datetime.strptime(s, "%Y-%m")
+            return datetime.strptime(date_string, "%Y-%m")
         except ValueError:
             try:
-                return datetime.strptime(s, "%Y-%m-%d")
+                return datetime.strptime(date_string, "%Y-%m-%d")
             except ValueError:
                 msg = "Not a valid date: '{0}'.".format(s)
                 raise ValueError(msg)
