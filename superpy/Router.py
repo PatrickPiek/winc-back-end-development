@@ -2,7 +2,9 @@ import sys
 
 from Buy import Buy
 from Sell import Sell
-
+from Inventory import Inventory
+from Revenue import Revenue
+from Profit import Profit
 from Today import Today
 
 
@@ -20,37 +22,25 @@ class Router():
     def route(self):
 
         if self.action == 'buy':
-
             Buy(self.args).execute()
 
         if self.action == 'sell':
-
             Sell(self.args).execute()
 
         if self.action == 'report':
             if self.report == 'inventory':
-                self.inventory()
+                Inventory(self.args).report()
 
             if self.report == 'revenue':
-                self.revenue()
+                Revenue(self.args).report()
 
             if self.report == 'profit':
-                self.profit()
+                Profit(self.args).report()
 
         if self.args['advance_time'] is not None:
-
             Today(self.args).set()
 
         sys.exit(0)
-
-    def inventory(self):
-        pass
-
-    def revenue(self):
-        pass
-
-    def profit(self):
-        pass
 
 
 def main():

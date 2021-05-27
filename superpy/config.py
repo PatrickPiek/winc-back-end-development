@@ -17,7 +17,7 @@ SOLD_FIELDS = [
     'sell_price',       # float
 ]
 
-DATE_FILE = 'db_date.csv'
-DATE_FIELDS = [
-    'date',             # date in yyyy-mm-dd
+TODAY_FILE = 'db_today.csv'
+TODAY_FIELDS = [
+    'today',             # date in yyyy-mm-dd
 ]

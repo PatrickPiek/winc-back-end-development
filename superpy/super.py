@@ -3,12 +3,16 @@ __human_name__ = 'superpy'
 
 from Arguments import Arguments
 from Router import Router
+from Today import Today
 
 
 def main():
 
+    Today({})  # needed for all references to today’s date
+
     arguments = Arguments()
     router = Router(arguments.vars)
+
     router.route()
 
 
