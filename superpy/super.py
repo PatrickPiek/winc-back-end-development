@@ -11,7 +11,6 @@ def main():
 
     args = CommandLineArgs()
     route = Route(args.vars)
-    # print(route.args)
     route.route()
 
 

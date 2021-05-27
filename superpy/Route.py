@@ -1,6 +1,8 @@
 from FileDatabase import FileDatabase
 from make_date import make_date
 from format_date import format_date
+from datetime import datetime
+from datetime import timedelta
 
 
 class Route():
@@ -33,7 +35,7 @@ class Route():
                 self.profit()
 
         if self.args['advance_time'] is not None:
-            self.timewarp(self.args['advance_time'])
+            self.date(self.args['advance_time'])
             return
 
     def buy(self):
@@ -110,6 +112,25 @@ class Route():
 
         print('OK')
 
+    def date(self, value=0):
+
+        date = FileDatabase(
+            'date.csv', [
+                'date',             # date in yyyy-mm-dd
+            ])
+
+        today = datetime.now()
+
+        if value > 0:
+            today = today + timedelta(days=value)
+
+        today = datetime.strftime(today, "%Y-%m-%d")
+
+        date.data = [{'date': today}]
+        date.save()
+
+        print('OK')
+
     def inventory(self):
         pass
 
@@ -117,10 +138,6 @@ class Route():
         pass
 
     def profit(self):
-        pass
-
-    def timewarp(self, value=0):
-        print(value)
         pass
 
 
