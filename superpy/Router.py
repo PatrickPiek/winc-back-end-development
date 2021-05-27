@@ -1,11 +1,9 @@
-
-from make_date import make_date
-from format_date import format_date
 import sys
-import config
+
 from Buy import Buy
 from Sell import Sell
-from Date import Date
+
+from Today import Today
 
 
 class Router():
@@ -22,10 +20,12 @@ class Router():
     def route(self):
 
         if self.action == 'buy':
-            self.buy()
+
+            Buy(self.args).execute()
 
         if self.action == 'sell':
-            self.sell()
+
+            Sell(self.args).execute()
 
         if self.action == 'report':
             if self.report == 'inventory':
@@ -38,24 +38,10 @@ class Router():
                 self.profit()
 
         if self.args['advance_time'] is not None:
-            self.date()
+
+            Today(self.args).set()
 
         sys.exit(0)
-
-    def buy(self):
-
-        buy = Buy(self.args)
-        buy.execute()
-
-    def sell(self):
-
-        sell = Sell(self.args)
-        sell.execute()
-
-    def date(self, value=0):
-
-        date = Date(self.args)
-        date.execute()
 
     def inventory(self):
         pass

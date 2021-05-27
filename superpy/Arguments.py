@@ -2,6 +2,7 @@ import argparse
 import sys
 
 from is_valid_date import is_valid_date
+from is_valid_price import is_valid_price
 
 
 class Arguments():
@@ -35,7 +36,7 @@ class Arguments():
                          )
 
         cli.add_argument('--price',
-                         type=str,
+                         type=is_valid_price,
                          action='store',
                          metavar='',
                          help='the price of the product to buy or sell'

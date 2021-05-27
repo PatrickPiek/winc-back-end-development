@@ -1,9 +1,9 @@
 # python super.py sell --product-name orange --price 2
 
+import sys
+import config
 from Database import Database
 from make_date import make_date
-import config
-import sys
 
 
 class Sell():

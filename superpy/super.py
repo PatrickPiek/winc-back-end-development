@@ -8,8 +8,8 @@ from Router import Router
 def main():
 
     arguments = Arguments()
-    route = Router(arguments.vars)
-    route.route()
+    router = Router(arguments.vars)
+    router.route()
 
 
 if __name__ == '__main__':

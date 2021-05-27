@@ -1,9 +1,10 @@
 # python super.py buy --product-name orange --price 0.8 --expiration-date 2020-01-01
 
-from Database import Database
-from make_date import make_date
-from format_date import format_date
 import config
+from Database import Database
+from format_date import format_date
+from make_date import make_date
+from is_valid_price import is_valid_price
 
 
 class Buy():
