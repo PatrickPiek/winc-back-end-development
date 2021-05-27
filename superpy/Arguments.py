@@ -56,6 +56,11 @@ class Arguments():
                          help='advance the time by n days'
                          )
 
+        cli.add_argument('--now',
+                         action='store_true',
+                         help='report argument'
+                         )
+
         cli.add_argument('--yesterday',
                          action='store_true',
                          help='report argument'

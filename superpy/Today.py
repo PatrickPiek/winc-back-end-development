@@ -18,6 +18,8 @@ class Today():
         try:
             hasattr(self.database.data[0], 'today')
         except:
+            self.args['advance_time'] = 0
+            self.args['init'] = True
             self.set()
 
     def set(self):

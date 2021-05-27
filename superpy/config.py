@@ -8,6 +8,18 @@ BOUGHT_FIELDS = [
     'buy_price',        # float
     'expiration_date',  # date in yyyy-mm-dd
 ]
+BOUGHT_REPORT_FIELDS = [
+    'product_name',
+    'count',
+    'buy_price',
+    'expiration_date',
+]
+BOUGHT_REPORT_COLUMN_NAMES = [
+    'Product Name',
+    'Count',
+    'Buy Price',
+    'Expiration Date',
+]
 
 SOLD_FILE = 'db_sold.csv'
 SOLD_FIELDS = [
@@ -20,4 +32,10 @@ SOLD_FIELDS = [
 TODAY_FILE = 'db_today.csv'
 TODAY_FIELDS = [
     'today',             # date in yyyy-mm-dd
+]
+
+DATE_FIELDS = [
+    'buy_date',
+    'sell_date',
+    'expiration_date',
 ]

@@ -1,5 +1,7 @@
 import csv
 from os.path import abspath, exists
+import config
+from datetime import datetime
 
 
 class Database():
@@ -37,7 +39,11 @@ class Database():
             for row in file_ref:
                 rowdata = {}
                 for column in self.columns:
-                    rowdata[column] = row[column]
+                    if column in config.DATE_FIELDS:
+                        rowdata[column] = datetime.strptime(
+                            row[column], "%Y-%m-%d")
+                    else:
+                        rowdata[column] = row[column]
                 data.append(rowdata)
 
         self.data = data
