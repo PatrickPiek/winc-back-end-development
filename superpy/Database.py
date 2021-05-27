@@ -1,8 +1,8 @@
 import csv
-from os.path import abspath, isfile, exists
+from os.path import abspath, exists
 
 
-class FileDatabase():
+class Database():
 
     def __init__(self, filename='', columns=[]):
 

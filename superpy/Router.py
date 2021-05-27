@@ -1,12 +1,13 @@
-from FileDatabase import FileDatabase
+from Database import Database
 from make_date import make_date
 from format_date import format_date
 from datetime import datetime
 from datetime import timedelta
-import config
+import db_config
+from get_bought_id import get_bought_id
 
 
-class Route():
+class Router():
 
     def __init__(self, args={}):
 
@@ -37,13 +38,12 @@ class Route():
 
         if self.args['advance_time'] is not None:
             self.date(self.args['advance_time'])
-            return
 
     def buy(self):
 
         # python super.py buy --product-name orange --price 0.8 --expiration-date 2020-01-01
 
-        bought = FileDatabase(config.BOUGHT_FILENAME, config.BOUGHT_FIELDS)
+        bought = Database(db_config.BOUGHT_FILE, db_config.BOUGHT_FIELDS)
 
         bought.add(
             {
@@ -60,23 +60,10 @@ class Route():
 
         # python super.py sell --product-name orange --price 2
 
-        bought = FileDatabase(config.BOUGHT_FILENAME, config.BOUGHT_FIELDS)
-        sold = FileDatabase(config.SOLD_FILENAME, config.SOLD_FIELDS)
+        bought = Database(db_config.BOUGHT_FILE, db_config.BOUGHT_FIELDS)
+        sold = Database(db_config.SOLD_FILE, db_config.SOLD_FIELDS)
 
-        bought_id = None
-        for b in bought.data:
-            if b['product_name'] == self.args['product_name']:
-                if sold.rowcount == 0:
-                    bought_id = b['id']
-                    break
-                else:
-                    sold_state = False
-                    for s in sold.data:
-                        if b['id'] == s['bought_id']:
-                            sold_state = True
-                    if sold_state == False:
-                        bought_id = b['id']
-                        break
+        bought_id = get_bought_id(bought, sold, self.args)
 
         if bought_id == None:
             print('ERROR: Product not in stock')
@@ -96,7 +83,7 @@ class Route():
 
         # super.py --advance-time 2
 
-        date = FileDatabase(config.DATE_FILENAME, config.DATE_FIELDS)
+        date = Database(db_config.DATE_FILE, db_config.DATE_FIELDS)
 
         today = datetime.now()
 

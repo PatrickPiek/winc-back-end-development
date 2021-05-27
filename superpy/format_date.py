@@ -6,7 +6,7 @@ def format_date(date):
 
     if isinstance(date, datetime):
         return date.strftime('%Y-%m-%d')
-    raise ValueError
+    raise ValueError('date is a valid datetime object')
 
 
 def main():

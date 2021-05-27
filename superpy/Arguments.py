@@ -2,7 +2,7 @@ import argparse
 from is_valid_date import is_valid_date
 
 
-class CommandLineArgs():
+class Arguments():
 
     def __init__(self):
 
