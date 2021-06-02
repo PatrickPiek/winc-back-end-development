@@ -36,8 +36,8 @@
 -   [x] Setting and advancing the date that the application perceives as ‘today’
 -   [x] Recording the buying and selling of products on certain dates
 -   [x] Reporting revenue and profit over specified time periods
--   [x] Exporting selections of data to CSV files
--   [ ] Two other additional non-trivial features of your choice
+-   [ ] Exporting selections of data to CSV files
+-   [x] Two other additional non-trivial features of your choice
 
 ### Additional non-trivial features
 
