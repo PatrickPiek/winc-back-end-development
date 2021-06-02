@@ -40,6 +40,7 @@ class Inventory():
 
         sold_today = filter_list_by_date(
             self.database_sold.data, 'sell_date', self.today)
+
         bought_today = filter_list_by_date(
             self.database_bought.data, 'buy_date', self.today)
 
