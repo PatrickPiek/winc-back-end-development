@@ -4,6 +4,8 @@ import sys
 import config
 from Database import Database
 from Today import Today
+from functions import filter_list
+from functions import sort_list
 
 
 class Sell():
@@ -34,23 +36,26 @@ class Sell():
         return 'OK'
 
     def get_bought_id(self):
-        bought_id = None
 
-        for b in self.database_bought.data:
-            if b['product_name'] == self.args['product_name']:
-                if self.database_sold.rowcount == 0:
-                    bought_id = b['id']
-                    break
-                else:
-                    sold_state = False
-                    for s in self.database_sold.data:
-                        if b['id'] == s['bought_id']:
-                            sold_state = True
-                    if sold_state == False:
-                        bought_id = b['id']
-                        break
+        inventory = filter_list(
+            self.database_bought.data, 'product_name', [self.args['product_name']])
 
-        return bought_id
+        if len(inventory) == 0:
+            return None
+
+        inventory = sort_list(inventory, 'expiration_date')
+
+        if self.database_sold.rowcount == 0:
+            return inventory[0]['id']
+
+        for item in inventory:
+            is_sold = filter_list(
+                self.database_sold.data, 'bought_id', [item['id']])
+
+            if len(is_sold) == 0:
+                return item['id']
+
+        return None
 
 
 def main():

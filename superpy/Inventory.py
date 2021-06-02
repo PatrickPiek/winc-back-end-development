@@ -9,6 +9,9 @@ from datetime import datetime
 from datetime import timedelta
 from tabulate import tabulate
 from rich import print
+from functions import filter_list
+from functions import sort_list
+from functions import filter_list_by_date
 
 
 class Inventory():
@@ -16,63 +19,78 @@ class Inventory():
     def __init__(self, args):
 
         self.args = args
-        self.bought = Database(
+        self.database_bought = Database(
             config.BOUGHT_FILE, config.BOUGHT_FIELDS)
-        self.sold = Database(
+        self.database_sold = Database(
             config.SOLD_FILE, config.SOLD_FIELDS)
 
-        date = Today().get_date()
-        date = datetime.strptime(date, config.DATE_FORMAT)
+        today = Today().get_date()
+        today = datetime.strptime(today, config.DATE_FORMAT)
 
         if self.args['yesterday'] == True:
-            date = Today().get_date()
-            date = datetime.strptime(date, config.DATE_FORMAT)
-            date = date + timedelta(days=-1)
+            today = Today().get_date()
+            today = datetime.strptime(today, config.DATE_FORMAT)
+            today = today + timedelta(days=-1)
 
-        self.date = date
+        self.today = today
 
     def run(self):
 
-        # collect all items that are not yet sold
-
         inventory = []
 
-        print(self.bought.data)
+        sold_today = filter_list_by_date(
+            self.database_sold.data, 'sell_date', self.today)
+        bought_today = filter_list_by_date(
+            self.database_bought.data, 'buy_date', self.today)
 
-        for b in self.bought.data:
-            sold_state = False
-            for s in self.sold.data:
-                if b['id'] == s['bought_id']:
-                    if self.date >= b['buy_date']:
-                        sold_state = True
-            if sold_state == False:
-                b['count'] = 1
-                b['id'] = None
-                inventory.append({
-                    'Product Name': b['product_name'],
-                    'Count': 1,
-                    'Buy Price': b['buy_price'],
-                    'Expiration Date': format_date(b['expiration_date']),
-                })
+        for item in bought_today:
 
-        # merge the same products and update counts
+            is_sold = filter_list(
+                sold_today, 'bought_id', [item['id']])
 
-        # report = []
+            if len(is_sold) == 0:
 
-        # for inventory_item in inventory:
-        #     if inventory_item not in report:
-        #         report.append(inventory_item)
-        #     else:
-        #         for report_item in report:
-        #             if inventory_item == report_item:
-        #                 #  split array and merge arrays
+                in_report = filter_list(
+                    inventory, 'product_name', [item['product_name']])
 
-        # print(self.date)
+                in_report = filter_list(
+                    in_report, 'buy_price', [item['buy_price']])
+
+                in_report = filter_list(
+                    in_report, 'expiration_date', [item['expiration_date']])
+
+                if len(in_report) > 0:
+                    inventory[0]['count'] = inventory[0]['count'] + 1
+                else:
+                    inventory.append({
+                        'product_name': item['product_name'],
+                        'count': 1,
+                        'buy_price': item['buy_price'],
+                        'expiration_date': item['expiration_date'],
+                    })
+
+        if len(inventory) == 0:
+            return 'WARNING: Inventory is empty'
+
+        inventory = sort_list(inventory, 'product_name')
+
+        report = []
+        for item in inventory:
+            report.append({
+                'Product Name': item['product_name'].title(),
+                'Count': item['count'],
+                'Buy Price': '€ {:,.2f}'.format(float(item['buy_price'])),
+                'Sum Price': '€ {:,.2f}'.format(int(item['count']) * float(item['buy_price'])),
+                'Expiration Date': format_date(item['expiration_date']),
+                'Expired': 'Yes' if Today().get_date() > format_date(item['expiration_date']) else 'No'})
+
+        print(format_date(self.today))
 
         return tabulate(
-            inventory,
+            report,
             headers='keys',
-            tablefmt='grid'
+            tablefmt='fancy_grid',
+            colalign=('left', 'right', 'right', 'right', 'right', 'left')
         )
 
 

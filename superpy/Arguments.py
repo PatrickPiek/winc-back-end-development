@@ -1,8 +1,8 @@
 import argparse
 import sys
 
-from functions import is_valid_date
-from functions import is_valid_price
+from functions import convert_to_date
+from functions import convert_to_price
 
 
 class Arguments():
@@ -36,14 +36,14 @@ class Arguments():
                             )
 
         parser.add_argument('--price',
-                            type=is_valid_price,
+                            type=convert_to_price,
                             action='store',
                             metavar='',
                             help='the price of the product to buy or sell',
                             )
 
         parser.add_argument('--expiration-date',
-                            type=is_valid_date,
+                            type=convert_to_date,
                             action='store',
                             metavar='',
                             help='the expiration date of the product to buy or sell (yyyy-mm-dd)',
@@ -72,7 +72,7 @@ class Arguments():
                             )
 
         parser.add_argument('--date',
-                            type=is_valid_date,
+                            type=convert_to_date,
                             action='store',
                             metavar='',
                             help='report argument (yyyy-mm-dd)',

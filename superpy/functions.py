@@ -2,7 +2,7 @@ from datetime import datetime
 import config
 
 
-def is_valid_date(value=''):
+def convert_to_date(value=''):
     try:
         return datetime.strptime(value, "%Y")
     except ValueError:
@@ -16,7 +16,7 @@ def is_valid_date(value=''):
                 raise ValueError(msg)
 
 
-def is_valid_price(value):
+def convert_to_price(value):
     try:
         return int(value)
 
@@ -37,6 +37,26 @@ def format_date(date):
 
 def make_date():
     return datetime.today().strftime(config.DATE_FORMAT)
+
+
+def filter_list(data=[], column='', keys=[]):
+    if len(keys) == 0 or len(data) == 0:
+        return []
+    return list(filter(lambda row: row[column] in keys, data))
+
+
+def filter_list_by_date(data=[], column='', date=''):
+    if len(data) == 0 or not isinstance(date, datetime):
+        return []
+    return [d for d in data if d[column] <= date]
+
+
+def sort_list(data=[], column=''):
+    if len(data) == 0:
+        return []
+    if len(data) == 1:
+        return data
+    return sorted(data, key=lambda key: key[column])
 
 
 def main():
