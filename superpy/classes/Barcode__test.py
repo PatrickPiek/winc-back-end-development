@@ -1,7 +1,7 @@
 import unittest
 import math
 
-from Barcode import Barcode
+from classes.Barcode import Barcode
 
 
 class Test(unittest.TestCase):

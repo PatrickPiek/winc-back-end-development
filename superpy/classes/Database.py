@@ -1,5 +1,6 @@
 import csv
 from os.path import abspath, exists
+from os import makedirs
 import config
 from datetime import datetime
 
@@ -19,7 +20,11 @@ class Database():
             raise ValueError('a least one column is required')
 
         self.filename = filename
-        self.filepath = abspath(f'./databases/{self.filename}')
+
+        if not exists(abspath(f'./{config.DATABASES_DIR}')):
+            makedirs(abspath(f'./{config.DATABASES_DIR}'))
+
+        self.filepath = abspath(f'./{config.DATABASES_DIR}/{self.filename}')
         self.columns = columns
         self.columncount = len(columns)
 

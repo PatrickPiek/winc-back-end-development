@@ -1,5 +1,8 @@
 # Database field definitions
 
+DATABASES_DIR = 'databases'
+REPORTS_DIR = 'reports'
+
 BOUGHT_FILE = 'bought.csv'
 BOUGHT_FIELDS = [
     'id',               # number, auto increment from 1

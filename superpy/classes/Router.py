@@ -1,11 +1,11 @@
 import sys
 
-from Buy import Buy
-from Sell import Sell
-from Inventory import Inventory
-from Revenue import Revenue
-from Profit import Profit
-from Today import Today
+from classes.Buy import Buy
+from classes.Sell import Sell
+from classes.Inventory import Inventory
+from classes.Revenue import Revenue
+from classes.Profit import Profit
+from classes.Today import Today
 
 
 class Router():

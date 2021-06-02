@@ -72,7 +72,6 @@ class Inventory():
                 in_report = filter_list(
                     in_report, 'expiration_date', [item['expiration_date']])
 
-                print('in_report', in_report)
                 if len(in_report) > 0:
                     index = inventory.index(in_report[0])
                     inventory[index]['count'] = inventory[index]['count'] + 1

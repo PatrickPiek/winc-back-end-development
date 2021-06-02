@@ -1,9 +1,9 @@
 # python super.py buy --product-name orange --price 0.8 --expiration-date 2020-01-01
 
 import config
-from Database import Database
-from Today import Today
-from Barcode import Barcode
+from classes.Database import Database
+from classes.Today import Today
+from classes.Barcode import Barcode
 from functions import format_date
 from functions import filter_list
 
