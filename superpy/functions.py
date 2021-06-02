@@ -1,12 +1,15 @@
+from calendar import monthrange
+
 from datetime import datetime
 from datetime import timedelta
-from calendar import monthrange
-from os.path import abspath, exists
+
 from os import makedirs
-import csv
+from os.path import abspath, exists
+
 import config
-import xlsxwriter
+import csv
 import json
+import xlsxwriter
 
 
 def convert_to_date(value=''):
