@@ -83,7 +83,7 @@ class Arguments():
                             type=is_valid_export_type,
                             action='store',
                             metavar='',
-                            help='export report (csv, xlsx or pdf)',
+                            help='export report (csv, json or xlsx)',
                             )
 
         self.args = parser.parse_args()

@@ -19,7 +19,7 @@ from functions import make_filename
 
 from functions import create_csv_file
 from functions import create_xlsx_file
-from functions import create_pdf_file
+from functions import create_json_file
 
 
 class Inventory():
@@ -99,8 +99,8 @@ class Inventory():
             self.export_csv(report)
         elif self.export == 'xlsx':
             self.export_xlsx(report)
-        elif self.export == 'pdf':
-            self.export_pdf(report)
+        elif self.export == 'json':
+            self.export_json(report)
 
         return tabulate(
             report,
@@ -117,9 +117,9 @@ class Inventory():
         filename = make_filename('report_inventory_', '.xlsx')
         create_xlsx_file(filename, config.INVENTORY_REPORT_FIELDS, data)
 
-    def export_pdf(self, data):
-        filename = make_filename('report_inventory_', '.pdf')
-        create_pdf_file(filename, config.INVENTORY_REPORT_FIELDS, data)
+    def export_json(self, data):
+        filename = make_filename('report_inventory_', '.json')
+        create_json_file(filename, data)
 
 
 def main():

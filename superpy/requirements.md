@@ -35,9 +35,9 @@
 - [x] Setting and advancing the date that the application perceives as ‘today’
 - [x] Recording the buying and selling of products on certain dates
 - [x] Reporting revenue and profit over specified time periods
-- [ ] Exporting selections of data to CSV files
+- [x] Exporting selections of data to CSV files
 - [ ] Two other additional non-trivial features of your choice
 
 ### Additional non-trivial features
-- [x] 1: Export report as a PDF or Excel file (xlsx)
+- [x] 1: Export report as a JSON or Excel file
 - [ ] 2: Generate a unique EAN-13 barcode for each new product

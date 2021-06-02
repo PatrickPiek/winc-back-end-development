@@ -5,6 +5,7 @@ from os.path import abspath, exists
 import csv
 import config
 import xlsxwriter
+import json
 
 
 def convert_to_date(value=''):
@@ -35,8 +36,8 @@ def convert_to_price(value):
 
 
 def is_valid_export_type(value=''):
-    if value not in ('csv', 'xlsx', 'pdf'):
-        raise ValueError('We need a valid export type: csv, xlsx or pdf')
+    if value not in ('csv', 'json', 'xlsx'):
+        raise ValueError('We need a valid export type: csv, json or xlsx')
     return value
 
 
@@ -150,10 +151,12 @@ def create_xlsx_file(filename: str, headers: list, items: dict):
             worksheet.write_row(row=index + 1, col=0, data=row)
 
 
-def create_pdf_file(filename: str, headers: list, items: list):
+def create_json_file(filename: str, data: dict):
     filepath = abspath(f'./{filename}')
-    print(filepath)
-    return 'done'
+
+    with open(filepath, 'w+') as json_file:
+        json.dump(data, json_file, sort_keys=True,
+                  indent=4, ensure_ascii=False)
 
 
 def main():
