@@ -31,6 +31,8 @@ class Inventory():
             config.BOUGHT_FILE, config.BOUGHT_FIELDS)
         self.database_sold = Database(
             config.SOLD_FILE, config.SOLD_FIELDS)
+        self.database_products = Database(
+            config.PRODUCTS_FILE, config.PRODUCTS_FIELDS)
 
         today = Today().get_date()
         today = datetime.strptime(today, config.DATE_FORMAT)
@@ -70,6 +72,7 @@ class Inventory():
                 in_report = filter_list(
                     in_report, 'expiration_date', [item['expiration_date']])
 
+                print('in_report', in_report)
                 if len(in_report) > 0:
                     inventory[0]['count'] = inventory[0]['count'] + 1
                 else:
@@ -87,13 +90,18 @@ class Inventory():
 
         report = []
         for item in inventory:
+            product = filter_list(
+                self.database_products.data, 'product_name', [item['product_name']])
+
             report.append({
-                'Product Name': item['product_name'].title(),
-                'Count': item['count'],
-                'Buy Price': '€ {:,.2f}'.format(float(item['buy_price'])),
-                'Sum Price': '€ {:,.2f}'.format(int(item['count']) * float(item['buy_price'])),
-                'Expiration Date': format_date(item['expiration_date']),
-                'Expired': 'Yes' if Today().get_date() > format_date(item['expiration_date']) else 'No'})
+                'Product Name':     product[0]['full_name'] if len(product) != 0 else item['product_name'],
+                'Count':            item['count'],
+                'Buy Price':        '€ {:,.2f}'.format(float(item['buy_price'])),
+                'Sum Price':        '€ {:,.2f}'.format(int(item['count']) * float(item['buy_price'])),
+                'Expiration Date':  format_date(item['expiration_date']),
+                'Expired':          'Yes' if Today().get_date() > format_date(item['expiration_date']) else 'No',
+                'EAN13':            product[0]['ean13'] if len(product) != 0 else '',
+            })
 
         if self.export == 'csv':
             self.export_csv(report)

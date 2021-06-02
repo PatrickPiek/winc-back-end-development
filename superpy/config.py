@@ -7,6 +7,7 @@ BOUGHT_FIELDS = [
     'buy_date',         # date in yyyy-mm-dd
     'buy_price',        # float
     'expiration_date',  # date in yyyy-mm-dd
+    'ean13'             # generated ean13 barcode
 ]
 
 SOLD_FILE = 'db_sold.csv'
@@ -20,6 +21,13 @@ SOLD_FIELDS = [
 TODAY_FILE = 'db_today.csv'
 TODAY_FIELDS = [
     'today',            # date in yyyy-mm-dd
+]
+
+PRODUCTS_FILE = 'db_products.csv'
+PRODUCTS_FIELDS = [
+    'product_name',
+    'full_name',
+    'ean13',
 ]
 
 DATE_FIELDS = [
@@ -40,4 +48,7 @@ INVENTORY_REPORT_FIELDS = [
     'Sum Price',
     'Expiration Date',
     'Expired',
+    'EAN13'
 ]
+
+BRANCH_BARCODE_PREFIX = '123456'

@@ -3,7 +3,9 @@
 import config
 from Database import Database
 from Today import Today
+from Barcode import Barcode
 from functions import format_date
+from functions import filter_list
 
 
 class Buy():
@@ -11,18 +13,35 @@ class Buy():
     def __init__(self, args):
 
         self.args = args
-        self.database = Database(
+        self.database_bought = Database(
             config.BOUGHT_FILE, config.BOUGHT_FIELDS)
+        self.database_products = Database(
+            config.PRODUCTS_FILE, config.PRODUCTS_FIELDS)
+        self.product_name = args['product_name']
 
     def run(self):
 
-        self.database.add(
+        product = filter_list(
+            self.database_products.data, 'product_name', [self.product_name])
+        barcode = ''
+        if len(product) == 0:
+            barcode = Barcode(config.BRANCH_BARCODE_PREFIX)
+            self.database_products.add({
+                'product_name':     self.product_name,
+                'full_name':        self.product_name.title(),
+                'ean13':            barcode,
+            })
+        else:
+            barcode = product[0]['ean13']
+
+        self.database_bought.add(
             {
-                'id':               self.database.rowcount + 1,
-                'product_name':     self.args['product_name'],
+                'id':               self.database_bought.rowcount + 1,
+                'product_name':     self.product_name,
                 'buy_date':         Today().get_date(),
                 'buy_price':        self.args['price'],
                 'expiration_date':  format_date(self.args['expiration_date']),
+                'ean13':            barcode
             })
 
         return 'OK'

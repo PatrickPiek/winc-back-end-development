@@ -59,8 +59,7 @@ class Barcode():
 
 
 def main():
-    barcode = Barcode('123456')
-    print(vars(barcode))
+    pass
 
 
 if __name__ == '__main__':

@@ -16,7 +16,7 @@
 
 - [x] calendar (https://docs.python.org/3/library/calendar.html)
 - [x] os.path (https://docs.python.org/3/library/os.path.html)
-- [x] rich (https://rich.readthedocs.io/en/stable/introduction.html)
+- [x] rich (https://rich.readthedocs.io/en/stable/introduction.html) [only for clean debug output]
 - [x] sys (https://docs.python.org/3/library/sys.html)
 - [x] tabulate (https://pypi.org/project/tabulate/)
 - [x] unittest (https://docs.python.org/3/library/unittest.html)
