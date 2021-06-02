@@ -4,22 +4,24 @@
 # super.py report inventory --today --export xlsx
 # super.py report inventory --today --export pdf
 
-import config
-from Database import Database
-from Today import Today
-from functions import format_date
 from datetime import datetime
 from datetime import timedelta
-from tabulate import tabulate
 from rich import print
-from functions import filter_list
-from functions import sort_list
-from functions import filter_list_by_date
-from functions import make_filename
+from tabulate import tabulate
+
+import config
+
+from classes.Database import Database
+from classes.Today import Today
 
 from functions import create_csv_file
-from functions import create_xlsx_file
 from functions import create_json_file
+from functions import create_xlsx_file
+from functions import filter_list
+from functions import filter_list_by_date
+from functions import format_date
+from functions import make_filename
+from functions import sort_list
 
 
 class Inventory():

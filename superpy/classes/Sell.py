@@ -1,9 +1,12 @@
 # python super.py sell --product-name orange --price 2
 
 import sys
+
 import config
-from Database import Database
-from Today import Today
+
+from classes.Database import Database
+from classes.Today import Today
+
 from functions import filter_list
 from functions import sort_list
 

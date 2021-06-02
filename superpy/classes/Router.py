@@ -1,10 +1,10 @@
 import sys
 
 from classes.Buy import Buy
-from classes.Sell import Sell
 from classes.Inventory import Inventory
-from classes.Revenue import Revenue
 from classes.Profit import Profit
+from classes.Revenue import Revenue
+from classes.Sell import Sell
 from classes.Today import Today
 
 

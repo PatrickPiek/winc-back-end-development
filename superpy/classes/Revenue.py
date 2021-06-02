@@ -5,21 +5,24 @@
 # super.py report revenue --date 2021-06
 # super.py report revenue --date 2021-06-02
 
-import config
-from Database import Database
-from Today import Today
-from functions import format_date
 from datetime import datetime
 from datetime import timedelta
-from tabulate import tabulate
 from rich import print
+from tabulate import tabulate
+
+import config
+
+from classes.Database import Database
+from classes.Today import Today
+
+from functions import convert_to_date
 from functions import filter_list
 from functions import filter_list_by_date
-from functions import convert_to_date
+from functions import filter_list_by_date_range
+from functions import format_currency
+from functions import format_date
 from functions import last_day_of_month
 from functions import last_day_of_year
-from functions import format_currency
-from functions import filter_list_by_date_range
 
 
 class Revenue():

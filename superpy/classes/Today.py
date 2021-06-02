@@ -2,8 +2,11 @@
 
 from datetime import datetime
 from datetime import timedelta
+
 import config
-from Database import Database
+
+from classes.Database import Database
+
 from functions import format_date
 
 

@@ -1,5 +1,6 @@
 # Database field definitions
 
+BARCODES_DIR = 'barcodes'
 DATABASES_DIR = 'databases'
 REPORTS_DIR = 'reports'
 

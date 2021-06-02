@@ -1,4 +1,9 @@
 import random
+from barcode import EAN13
+from barcode.writer import ImageWriter
+import config
+from os.path import abspath, exists
+from os import makedirs
 
 
 class Barcode():
@@ -45,6 +50,16 @@ class Barcode():
         self.checksum = [self.__calculate_checksum()]
         self.ean = ''.join([str(digit)
                             for digit in (self.code + self.checksum)])
+        self.__generate_barcode_image(self.ean)
+
+    def __generate_barcode_image(self, ean):
+
+        directory = config.BARCODES_DIR
+        if not exists(abspath(f'./{directory}')):
+            makedirs(abspath(f'./{directory}'))
+
+        with open(f'./{directory}/{ean}.png', 'wb') as f:
+            EAN13(ean, writer=ImageWriter()).write(f)
 
     def __str__(self):
         return self.ean
