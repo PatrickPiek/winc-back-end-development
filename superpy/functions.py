@@ -122,9 +122,7 @@ def date_as_string(date=''):
 def create_csv_file(filename, fieldnames, data):
 
     directory = config.REPORTS_DIR
-    if not exists(abspath(f'./{directory}')):
-        makedirs(abspath(f'./{directory}'))
-
+    make_missing_dir(directory)
     filepath = abspath(f'./{directory}/{filename}')
 
     with open(filepath, mode='w+') as csv_file:
@@ -145,9 +143,7 @@ def create_xlsx_file(filename: str, headers: list, items: dict):
     # adapted from: https://stackoverflow.com/questions/14637853/how-do-i-output-a-list-of-dictionaries-to-an-excel-sheet/30357389
 
     directory = config.REPORTS_DIR
-    if not exists(abspath(f'./{directory}')):
-        makedirs(abspath(f'./{directory}'))
-
+    make_missing_dir(directory)
     filepath = abspath(f'./{directory}/{filename}')
 
     with xlsxwriter.Workbook(filepath) as workbook:
@@ -163,14 +159,22 @@ def create_xlsx_file(filename: str, headers: list, items: dict):
 def create_json_file(filename: str, data: dict):
 
     directory = config.REPORTS_DIR
-    if not exists(abspath(f'./{directory}')):
-        makedirs(abspath(f'./{directory}'))
-
+    make_missing_dir(directory)
     filepath = abspath(f'./{directory}/{filename}')
 
     with open(filepath, 'w+') as json_file:
         json.dump(data, json_file, sort_keys=True,
                   indent=4, ensure_ascii=False)
+
+
+def make_missing_dir(dir: str = ''):
+    if dir == '':
+        raise ValueError('We need a valid directory name')
+    try:
+        if not exists(abspath(f'./{dir}')):
+            makedirs(abspath(f'./{dir}'))
+    except:
+        raise OSError(f'We require a ./{dir} directory')
 
 
 def main():

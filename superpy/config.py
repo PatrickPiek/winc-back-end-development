@@ -14,6 +14,13 @@ BOUGHT_FIELDS = [
     'ean13'             # generated ean13 barcode
 ]
 
+PRODUCTS_FILE = 'products.csv'
+PRODUCTS_FIELDS = [
+    'product_name',     # string, short name of product
+    'full_name',        # string, full name of product
+    'ean13',            # string, 13 digits (12 + 1 checksum)
+]
+
 SOLD_FILE = 'sold.csv'
 SOLD_FIELDS = [
     'id',               # number, auto increment from 1
@@ -27,13 +34,6 @@ TODAY_FIELDS = [
     'today',            # date in yyyy-mm-dd
 ]
 
-PRODUCTS_FILE = 'products.csv'
-PRODUCTS_FIELDS = [
-    'product_name',     # string, short name of product
-    'full_name',        # string, full name of product
-    'ean13',            # string, 13 digits (12 + 1 checksum)
-]
-
 DATE_FIELDS = [
     'buy_date',
     'sell_date',
@@ -43,6 +43,11 @@ DATE_FIELDS = [
 DATE_FORMAT = '%Y-%m-%d'
 YEAR_MONTH_FORMAT = '%Y-%m'
 YEAR_FORMAT = '%Y'
+
+REPORT_DATE_FORMAT = '%B %d %Y'
+REPORT_YEAR_MONTH_FORMAT = '%B %Y'
+REPORT_YEAR_FORMAT = YEAR_FORMAT
+
 DATE_FORMAT_FILENAME = '%Y%m%d_%H%M%S'
 
 INVENTORY_REPORT_FIELDS = [

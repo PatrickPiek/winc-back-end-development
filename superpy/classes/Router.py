@@ -13,7 +13,7 @@ class Router():
     def __init__(self, args={}):
 
         if not isinstance(args, dict):
-            raise TypeError('args is a dictionary of commandline arguments')
+            raise TypeError('We require a dictionary of commandline arguments')
 
         self.args = args
         self.action = args['action']

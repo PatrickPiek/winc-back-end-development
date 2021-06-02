@@ -56,18 +56,18 @@ class Profit():
         if self.args['date'] != None:
 
             if(len(self.date) == 10):  # yyyy-mm-dd
-                self.date_format = '%B %d %Y'
+                self.date_format = config.REPORT_DATE_FORMAT
                 self.date_start = convert_to_date(self.date)
                 self.date_end = convert_to_date(self.date)
 
             elif len(self.date) == 7:  # yyyy-mm
-                self.date_format = '%B %Y'
+                self.date_format = config.REPORT_YEAR_MONTH_FORMAT
                 self.date_start = convert_to_date(self.date)
                 self.date_end = convert_to_date(self.date)
                 self.date_end = last_day_of_month(self.date_end)
 
             elif len(self.date) == 4:  # yyyy
-                self.date_format = '%Y'
+                self.date_format = config.REPORT_YEAR_FORMAT
                 self.date_start = convert_to_date(self.date)
                 self.date_end = convert_to_date(self.date)
                 self.date_end = last_day_of_year(self.date_end)

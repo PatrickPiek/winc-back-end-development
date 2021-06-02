@@ -1,8 +1,12 @@
-import csv
-from os.path import abspath, exists
 from os import makedirs
+from os.path import abspath, exists
+
+import csv
+
 import config
+
 from datetime import datetime
+from functions import make_missing_dir
 
 
 class Database():
@@ -12,17 +16,16 @@ class Database():
         if not isinstance(filename, str):
             raise TypeError('filename is a string')
         elif filename == '':
-            raise ValueError('a valid filename is required')
+            raise ValueError('We require a valid filename')
 
         if not isinstance(columns, list):
             raise TypeError('columns is a list of names')
         elif len(columns) == 0:
-            raise ValueError('a least one column is required')
+            raise ValueError('We require at least one column')
 
         self.filename = filename
 
-        if not exists(abspath(f'./{config.DATABASES_DIR}')):
-            makedirs(abspath(f'./{config.DATABASES_DIR}'))
+        make_missing_dir(config.DATABASES_DIR)
 
         self.filepath = abspath(f'./{config.DATABASES_DIR}/{self.filename}')
         self.columns = columns

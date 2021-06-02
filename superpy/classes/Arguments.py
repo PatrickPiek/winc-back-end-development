@@ -89,8 +89,6 @@ class Arguments():
         self.args = parser.parse_args()
         self.vars = vars(self.args)
 
-        # print(self.vars)
-
         if self.vars['action'] == None and self.vars['advance_time'] == None:
             self.display_help(parser)
 
