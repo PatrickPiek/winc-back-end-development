@@ -50,10 +50,8 @@ class Barcode():
         return self.ean
 
     def __calculate_checksum(self):
-        odd = self.code[0] + self.code[2] + self.code[4] + \
-            self.code[6] + self.code[8] + self.code[10]
-        even = (self.code[1] + self.code[3] + self.code[5] +
-                self.code[7] + self.code[9] + self.code[11]) * 3
+        odd = sum(self.code[0::2])
+        even = sum(self.code[1::2]) * 3
         unit = (odd + even) % 10
         if unit != 0:
             return 10 - unit
@@ -61,7 +59,8 @@ class Barcode():
 
 
 def main():
-    pass
+    barcode = Barcode('123456')
+    print(vars(barcode))
 
 
 if __name__ == '__main__':
