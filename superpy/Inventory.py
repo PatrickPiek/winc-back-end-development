@@ -74,7 +74,8 @@ class Inventory():
 
                 print('in_report', in_report)
                 if len(in_report) > 0:
-                    inventory[0]['count'] = inventory[0]['count'] + 1
+                    index = inventory.index(in_report[0])
+                    inventory[index]['count'] = inventory[index]['count'] + 1
                 else:
                     inventory.append({
                         'product_name': item['product_name'],

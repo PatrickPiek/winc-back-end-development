@@ -40,4 +40,4 @@
 
 ### Additional non-trivial features
 - [x] 1: Export report as a JSON or Excel file
-- [ ] 2: Generate a unique EAN-13 barcode for each new product
+- [x] 2: Generate a unique EAN-13 barcode for each new product and store in products database

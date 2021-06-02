@@ -120,7 +120,7 @@ def date_as_string(date=''):
 
 def create_csv_file(filename, fieldnames, data):
 
-    filepath = abspath(f'./{filename}')
+    filepath = abspath(f'./reports/{filename}')
 
     with open(filepath, mode='w+') as csv_file:
 
@@ -139,7 +139,7 @@ def create_xlsx_file(filename: str, headers: list, items: dict):
 
     # adapted from: https://stackoverflow.com/questions/14637853/how-do-i-output-a-list-of-dictionaries-to-an-excel-sheet/30357389
 
-    filepath = abspath(f'./{filename}')
+    filepath = abspath(f'./reports/{filename}')
 
     with xlsxwriter.Workbook(filepath) as workbook:
 
@@ -152,7 +152,7 @@ def create_xlsx_file(filename: str, headers: list, items: dict):
 
 
 def create_json_file(filename: str, data: dict):
-    filepath = abspath(f'./{filename}')
+    filepath = abspath(f'./reports/{filename}')
 
     with open(filepath, 'w+') as json_file:
         json.dump(data, json_file, sort_keys=True,

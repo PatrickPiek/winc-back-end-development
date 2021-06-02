@@ -19,7 +19,7 @@ class Database():
             raise ValueError('a least one column is required')
 
         self.filename = filename
-        self.filepath = abspath(f'./{self.filename}')
+        self.filepath = abspath(f'./databases/{self.filename}')
         self.columns = columns
         self.columncount = len(columns)
 
