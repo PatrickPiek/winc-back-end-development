@@ -20,6 +20,7 @@
 - [x] sys (https://docs.python.org/3/library/sys.html)
 - [x] tabulate (https://pypi.org/project/tabulate/)
 - [x] unittest (https://docs.python.org/3/library/unittest.html)
+- [x] xlsxwriter (https://xlsxwriter.readthedocs.io/)
 
 ### Requirements
 
@@ -38,5 +39,5 @@
 - [ ] Two other additional non-trivial features of your choice
 
 ### Additional non-trivial features
-- [ ] 1: Export report as a PDF or Excel file (xlsx)
+- [x] 1: Export report as a PDF or Excel file (xlsx)
 - [ ] 2: Generate a unique EAN-13 barcode for each new product

@@ -1,5 +1,8 @@
 # super.py report inventory --now
 # super.py report inventory --today
+# super.py report inventory --today --export csv
+# super.py report inventory --today --export xlsx
+# super.py report inventory --today --export pdf
 
 import config
 from Database import Database
@@ -12,6 +15,11 @@ from rich import print
 from functions import filter_list
 from functions import sort_list
 from functions import filter_list_by_date
+from functions import make_filename
+
+from functions import create_csv_file
+from functions import create_xlsx_file
+from functions import create_pdf_file
 
 
 class Inventory():
@@ -33,6 +41,8 @@ class Inventory():
             today = today + timedelta(days=-1)
 
         self.today = today
+
+        self.export = self.args['export']
 
     def run(self):
 
@@ -85,7 +95,12 @@ class Inventory():
                 'Expiration Date': format_date(item['expiration_date']),
                 'Expired': 'Yes' if Today().get_date() > format_date(item['expiration_date']) else 'No'})
 
-        print(format_date(self.today))
+        if self.export == 'csv':
+            self.export_csv(report)
+        elif self.export == 'xlsx':
+            self.export_xlsx(report)
+        elif self.export == 'pdf':
+            self.export_pdf(report)
 
         return tabulate(
             report,
@@ -93,6 +108,18 @@ class Inventory():
             tablefmt='fancy_grid',
             colalign=('left', 'right', 'right', 'right', 'right', 'left')
         )
+
+    def export_csv(self, data):
+        filename = make_filename('report_inventory_', '.csv')
+        create_csv_file(filename, config.INVENTORY_REPORT_FIELDS, data)
+
+    def export_xlsx(self, data):
+        filename = make_filename('report_inventory_', '.xlsx')
+        create_xlsx_file(filename, config.INVENTORY_REPORT_FIELDS, data)
+
+    def export_pdf(self, data):
+        filename = make_filename('report_inventory_', '.pdf')
+        create_pdf_file(filename, config.INVENTORY_REPORT_FIELDS, data)
 
 
 def main():

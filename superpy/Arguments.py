@@ -3,6 +3,7 @@ import sys
 
 from functions import convert_to_date
 from functions import convert_to_price
+from functions import is_valid_export_type
 
 
 class Arguments():
@@ -76,6 +77,13 @@ class Arguments():
                             action='store',
                             metavar='',
                             help='report argument (a date formatted as yyyy, yyyy-mm or yyyy-mm-dd)',
+                            )
+
+        parser.add_argument('--export',
+                            type=is_valid_export_type,
+                            action='store',
+                            metavar='',
+                            help='export report (csv, xlsx or pdf)',
                             )
 
         self.args = parser.parse_args()
