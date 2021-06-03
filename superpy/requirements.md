@@ -36,11 +36,12 @@
 -   [x] Setting and advancing the date that the application perceives as ‘today’
 -   [x] Recording the buying and selling of products on certain dates
 -   [x] Reporting revenue and profit over specified time periods
--   [ ] Exporting selections of data to CSV files
+-   [x] Exporting selections of data to CSV files
 -   [x] Two other additional non-trivial features of your choice
--   [ ] A short, 300-word report that highlights three technical elements of your implementation that you find notable
+-   [ ] A short, 300-word report that highlights three technically notable elements
 
 ### Additional non-trivial features
 
 -   [x] 1: Export report as a JSON or Excel file
 -   [x] 2: Generate a unique EAN-13 barcode for each new product and store in products database
+-   [x] 3: Store new barcodes in a barcodes directory
