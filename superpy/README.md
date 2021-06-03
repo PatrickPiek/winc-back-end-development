@@ -87,7 +87,8 @@ Report revenue with `report` and `profit` and provide a required time argument.
 
 ### Export
 
-Export raw data with `export`, use `--database` to set the database to export and `profit` and provide an optional time argument.
+Export raw data with `export`, use `--database` to set the database to export and provide an optional time argument.
+Use `--export-format <type>` to store the report in the format specified.
 
 -   `python ./super.py export --database bought --today --export-format csv`
 -   `python ./super.py export --database bought --yesterday --export-format csv`
