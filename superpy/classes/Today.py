@@ -7,7 +7,7 @@ import config
 
 from classes.Database import Database
 
-from functions import format_date
+from functions.date import format_date
 
 
 class Today():

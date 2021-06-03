@@ -1,8 +1,8 @@
-# super.py report inventory --now
-# super.py report inventory --today
-# super.py report inventory --today --export-format csv
-# super.py report inventory --today --export-format xlsx
-# super.py report inventory --today --export-format json
+# python ./super.py report inventory --now
+# python ./super.py report inventory --today
+# python ./super.py report inventory --today --export-format csv
+# python ./super.py report inventory --today --export-format xlsx
+# python ./super.py report inventory --today --export-format json
 
 from datetime import datetime
 from datetime import timedelta
@@ -14,14 +14,14 @@ import config
 from classes.Database import Database
 from classes.Today import Today
 
-from functions import report_csv
-from functions import report_json
-from functions import report_xlsx
-from functions import filter_list
-from functions import filter_list_by_date
-from functions import format_date
-from functions import make_filename
-from functions import sort_list
+from functions.date import format_date
+from functions.io import report_csv
+from functions.io import report_json
+from functions.io import report_xlsx
+from functions.filter import filter_list
+from functions.filter import filter_list_by_date
+from functions.io import make_filename
+from functions.sort import sort_list
 
 
 class Inventory():
@@ -29,13 +29,17 @@ class Inventory():
     def __init__(self, args):
 
         self.args = args
+
         self.database_bought = Database(
             config.BOUGHT_FILE, config.BOUGHT_FIELDS)
+
         self.database_sold = Database(
             config.SOLD_FILE, config.SOLD_FIELDS)
+
         self.database_products = Database(
             config.PRODUCTS_FILE, config.PRODUCTS_FIELDS)
 
+        # --now, --today and --yesterday
         today = Today().get_date()
         today = datetime.strptime(today, config.DATE_FORMAT)
 
@@ -65,6 +69,8 @@ class Inventory():
 
             if len(is_sold) == 0:
 
+                # check if product is already in inventory report
+
                 in_report = filter_list(
                     inventory, 'product_name', [item['product_name']])
 
@@ -75,9 +81,12 @@ class Inventory():
                     in_report, 'expiration_date', [item['expiration_date']])
 
                 if len(in_report) > 0:
+                    # increase count if product already in report
                     index = inventory.index(in_report[0])
                     inventory[index]['count'] = inventory[index]['count'] + 1
+
                 else:
+                    # add if product not in report
                     inventory.append({
                         'product_name': item['product_name'],
                         'count': 1,
@@ -106,11 +115,15 @@ class Inventory():
             })
 
         if self.export == 'csv':
-            self.export_csv(report)
+            filename = make_filename('report_inventory_', '.csv')
+            report_csv(filename, config.INVENTORY_REPORT_FIELDS, report)
         elif self.export == 'xlsx':
-            self.export_xlsx(report)
+            filename = make_filename('report_inventory_', '.xlsx')
+            report_xlsx(filename, config.INVENTORY_REPORT_FIELDS, report)
+
         elif self.export == 'json':
-            self.export_json(report)
+            filename = make_filename('report_inventory_', '.json')
+            report_json(filename, report)
 
         return tabulate(
             report,
@@ -118,18 +131,6 @@ class Inventory():
             tablefmt='fancy_grid',
             colalign=('left', 'right', 'right', 'right', 'right', 'left')
         )
-
-    def export_csv(self, data):
-        filename = make_filename('report_inventory_', '.csv')
-        report_csv(filename, config.INVENTORY_REPORT_FIELDS, data)
-
-    def export_xlsx(self, data):
-        filename = make_filename('report_inventory_', '.xlsx')
-        report_xlsx(filename, config.INVENTORY_REPORT_FIELDS, data)
-
-    def export_json(self, data):
-        filename = make_filename('report_inventory_', '.json')
-        report_json(filename, data)
 
 
 def main():

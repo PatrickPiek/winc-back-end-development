@@ -15,14 +15,14 @@ import config
 from classes.Database import Database
 from classes.Today import Today
 
-from functions import convert_to_date
-from functions import filter_list
-from functions import filter_list_by_date
-from functions import filter_list_by_date_range
-from functions import format_currency
-from functions import format_date
-from functions import last_day_of_month
-from functions import last_day_of_year
+from functions.currency import format_currency
+from functions.date import convert_to_date
+from functions.date import format_date
+from functions.date import last_day_of_month
+from functions.date import last_day_of_year
+from functions.filter import filter_list
+from functions.filter import filter_list_by_date
+from functions.filter import filter_list_by_date_range
 
 
 class Profit():

@@ -20,6 +20,8 @@ class Router():
         self.action = args['action']
         self.report = args['report']
 
+        # print(self.args)
+
     def route(self):
 
         if self.action == 'buy':
@@ -43,6 +45,8 @@ class Router():
 
         if self.args['advance_time'] != None:
             response = Today(self.args).run()
+
+        # return response
 
         if response != '':
             print(response)

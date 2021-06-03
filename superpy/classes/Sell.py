@@ -7,8 +7,9 @@ import config
 from classes.Database import Database
 from classes.Today import Today
 
-from functions import filter_list
-from functions import sort_list
+from functions.filter import filter_list
+from functions.sort import sort_list
+from functions.args import check_required_arguments
 
 
 class Sell():
@@ -16,8 +17,13 @@ class Sell():
     def __init__(self, args):
 
         self.args = args
+
+        check_required_arguments(
+            args, ('product_name', 'price'))
+
         self.database_bought = Database(
             config.BOUGHT_FILE, config.BOUGHT_FIELDS)
+
         self.database_sold = Database(
             config.SOLD_FILE, config.SOLD_FIELDS)
 

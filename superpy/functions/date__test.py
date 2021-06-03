@@ -1,6 +1,6 @@
 import unittest
 from datetime import datetime
-from functions import convert_to_date
+from functions.date import convert_to_date
 
 
 class Test(unittest.TestCase):

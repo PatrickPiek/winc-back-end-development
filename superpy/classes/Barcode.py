@@ -1,7 +1,9 @@
 from barcode import EAN13 as ean13
 from barcode.writer import ImageWriter
+
 from os import makedirs
 from os.path import abspath, exists
+
 import random
 
 import config

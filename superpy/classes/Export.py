@@ -1,8 +1,8 @@
-# super.py export --database bought --today --export-format csv
-# super.py export --database bought --yesterday --export-format csv
-# super.py export --database bought --date 2021-06 --export-format csv
-# super.py export --database sold --date 2021-06 --export-format xlsx
-# super.py export --database products --date 2021 --export-format json
+# python ./super.py export --database bought --today --export-format csv
+# python ./super.py export --database bought --yesterday --export-format csv
+# python ./super.py export --database bought --date 2021-06 --export-format csv
+# python ./super.py export --database sold --date 2021-06 --export-format xlsx
+# python ./super.py export --database products --date 2021 --export-format json
 
 from datetime import datetime
 from datetime import timedelta
@@ -12,17 +12,16 @@ import config
 from classes.Database import Database
 from classes.Today import Today
 
-from functions import export_csv
-from functions import export_json
-from functions import export_xlsx
-
-from functions import convert_to_date
-from functions import filter_list_by_date
-from functions import filter_list_by_date_range
-from functions import format_date
-from functions import last_day_of_month
-from functions import last_day_of_year
-from functions import make_filename
+from functions.date import convert_to_date
+from functions.date import format_date
+from functions.date import last_day_of_month
+from functions.date import last_day_of_year
+from functions.io import export_csv
+from functions.io import export_json
+from functions.io import export_xlsx
+from functions.filter import filter_list_by_date
+from functions.filter import filter_list_by_date_range
+from functions.io import make_filename
 
 
 class Export():
