@@ -130,7 +130,7 @@ class Database():
 
         except OSError:
             raise OSError(
-                f'Unable to process database file ‘{self.filepath}’')
+                f'Unable to save to database file ‘{self.filepath}’')
 
 
 def main():
