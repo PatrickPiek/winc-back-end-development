@@ -97,7 +97,7 @@ class Inventory():
                     })
 
         if len(inventory) == 0:
-            return 'WARNING: Inventory is empty'
+            return 'ERROR: Inventory is empty'
 
         inventory = sort_list(inventory, 'product_name')
 

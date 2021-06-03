@@ -119,9 +119,9 @@ class Export():
             data = self.database.data
 
         if len(data) == 0:
-            return 'WARNING: No data to export'
+            return 'ERROR: No data to export'
 
-        data_with_formated_dates = []
+        data_with_formatted_dates = []
         for row in data:
             columns = {}
             for column in self.database.columns:
@@ -129,8 +129,8 @@ class Export():
                     columns[column] = format_date(row[column])
                 else:
                     columns[column] = row[column]
-            data_with_formated_dates.append(columns)
-        data = data_with_formated_dates
+            data_with_formatted_dates.append(columns)
+        data = data_with_formatted_dates
 
         if self.export == 'csv':
             filename = make_filename(f'export_{self.database_name}_', '.csv')
