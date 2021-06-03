@@ -1,13 +1,11 @@
-# super.py report inventory --now
-# super.py report inventory --today
-# super.py report inventory --today --export csv
-# super.py report inventory --today --export xlsx
-# super.py report inventory --today --export json
+# super.py export bought --today --format csv
+# super.py export bought --yesterday --format csv
+# super.py export bought --date 2021-06 --format csv
+# super.py export sold --date 2021-06 --format xlsx
+# super.py export products --date 2021 --format json
 
 from datetime import datetime
 from datetime import timedelta
-from rich import print
-from tabulate import tabulate
 
 import config
 
@@ -17,6 +15,7 @@ from classes.Today import Today
 from functions import create_csv_file
 from functions import create_json_file
 from functions import create_xlsx_file
+
 from functions import filter_list
 from functions import filter_list_by_date
 from functions import format_date
@@ -24,7 +23,7 @@ from functions import make_filename
 from functions import sort_list
 
 
-class Inventory():
+class Export():
 
     def __init__(self, args):
 
@@ -112,12 +111,7 @@ class Inventory():
         elif self.export == 'json':
             self.export_json(report)
 
-        return tabulate(
-            report,
-            headers='keys',
-            tablefmt='fancy_grid',
-            colalign=('left', 'right', 'right', 'right', 'right', 'left')
-        )
+        return 'OK'
 
     def export_csv(self, data):
         filename = make_filename('report_inventory_', '.csv')
