@@ -23,8 +23,10 @@
     -   `pip install rich`
 -   [x] sys (https://docs.python.org/3/library/sys.html)
 -   [x] tabulate (https://pypi.org/project/tabulate/)
+    -   `pip install tabulate`
 -   [x] unittest (https://docs.python.org/3/library/unittest.html)
 -   [x] xlsxwriter (https://xlsxwriter.readthedocs.io/)
+    -   `pip install XlsxWriter`
 
 ### Requirements
 
