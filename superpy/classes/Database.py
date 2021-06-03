@@ -6,7 +6,7 @@ import csv
 import config
 
 from datetime import datetime
-from functions.io import make_missing_dir
+from functions.export import make_missing_dir
 
 
 class Database():

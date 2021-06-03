@@ -8,10 +8,12 @@ import random
 
 import config
 
+from functions.export import make_missing_dir
+
 
 class Barcode():
 
-    def __init__(self, prefix=[]):
+    def __init__(self, prefix):
 
         # check prefix type
         if not isinstance(prefix, (str, int, list)):
@@ -53,19 +55,29 @@ class Barcode():
         self.checksum = [self.__calculate_checksum()]
         self.ean = ''.join([str(digit)
                             for digit in (self.code + self.checksum)])
+
+        # generate barcode image
         self.__generate_barcode_image(self.ean)
 
     def __str__(self):
         return self.ean
 
-    def __generate_barcode_image(self, ean):
+    def __generate_barcode_image(self, ean=''):
+
+        if ean == '':
+            raise ValueError('A string of 13 digits is required')
 
         directory = config.BARCODES_DIR
-        if not exists(abspath(f'./{directory}')):
-            makedirs(abspath(f'./{directory}'))
+        make_missing_dir(directory)
+        filepath = abspath(f'./{directory}/{ean}.png')
 
-        with open(f'./{directory}/{ean}.png', 'wb') as f:
-            ean13(ean, writer=ImageWriter()).write(f)
+        try:
+            with open(filepath, 'wb') as f:
+                ean13(ean, writer=ImageWriter()).write(f)
+
+        except:
+            raise Exception(
+                f'Unable to save barcode to file ‘{filepath}’')
 
     def __calculate_checksum(self):
         odd = sum(self.code[0::2])

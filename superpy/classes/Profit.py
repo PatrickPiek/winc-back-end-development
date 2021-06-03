@@ -1,9 +1,9 @@
-# super.py report profit --now
-# super.py report profit --today
-# super.py report profit --yesterday
-# super.py report profit --date 2021
-# super.py report profit --date 2021-06
-# super.py report profit --date 2021-06-02
+# python ./super.py report profit --now
+# python ./super.py report profit --today
+# python ./super.py report profit --yesterday
+# python ./super.py report profit --date 2021
+# python ./super.py report profit --date 2021-06
+# python ./super.py report profit --date 2021-06-02
 
 from datetime import datetime
 from datetime import timedelta

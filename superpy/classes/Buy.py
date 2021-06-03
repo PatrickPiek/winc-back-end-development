@@ -1,4 +1,4 @@
-# python super.py buy --product-name orange --price 0.8 --expiration-date 2020-01-01
+# python ./super.py buy --product-name orange --price 0.8 --expiration-date 2020-01-01
 
 import config
 
@@ -20,7 +20,6 @@ class Buy():
         check_required_arguments(
             args, ('product_name', 'price', 'expiration_date'))
 
-        # get databases
         self.database_bought = Database(
             config.BOUGHT_FILE, config.BOUGHT_FIELDS)
 

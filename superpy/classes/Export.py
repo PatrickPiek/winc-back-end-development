@@ -16,12 +16,12 @@ from functions.date import convert_to_date
 from functions.date import format_date
 from functions.date import last_day_of_month
 from functions.date import last_day_of_year
-from functions.io import export_csv
-from functions.io import export_json
-from functions.io import export_xlsx
+from functions.export import export_csv
+from functions.export import export_json
+from functions.export import export_xlsx
+from functions.export import make_filename
 from functions.filter import filter_list_by_date
 from functions.filter import filter_list_by_date_range
-from functions.io import make_filename
 
 
 class Export():
@@ -80,7 +80,7 @@ class Export():
             if self.date_start == None:
                 raise ValueError('We need a valid date or date range')
 
-        # --export
+        # --export-format
         self.export = self.args['export_format']
 
         # filter

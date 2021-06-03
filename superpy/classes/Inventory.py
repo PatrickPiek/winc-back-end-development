@@ -15,12 +15,12 @@ from classes.Database import Database
 from classes.Today import Today
 
 from functions.date import format_date
-from functions.io import report_csv
-from functions.io import report_json
-from functions.io import report_xlsx
+from functions.export import make_filename
+from functions.export import report_csv
+from functions.export import report_json
+from functions.export import report_xlsx
 from functions.filter import filter_list
 from functions.filter import filter_list_by_date
-from functions.io import make_filename
 from functions.sort import sort_list
 
 

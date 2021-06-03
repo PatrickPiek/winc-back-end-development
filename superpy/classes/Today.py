@@ -1,4 +1,5 @@
-# super.py --advance-time 2
+# python ./super.py --advance-time 2
+# python ./super.py --advance-time 0
 
 from datetime import datetime
 from datetime import timedelta
@@ -17,9 +18,8 @@ class Today():
         self.args = args
         self.today = Database(config.TODAY_FILE, config.TODAY_FIELDS)
 
-        try:
-            hasattr(self.today.data[0], 'today')
-        except:
+        # set today if database is empty
+        if len(self.today.data) == 0:
             self.args['advance_time'] = 0
             self.args['init'] = True
             self.run()

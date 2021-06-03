@@ -3,34 +3,6 @@ from datetime import datetime
 import config
 
 
-def validate_action(action):
-    if action != None:
-        if action not in ('buy', 'sell', 'report', 'export'):
-            raise ValueError(
-                'The argument ‘action’ requires one of: buy, sell, report or export')
-
-
-def validate_report(report):
-    if report != None:
-        if report not in ('inventory', 'revenue', 'profit'):
-            raise ValueError(
-                'The argument ‘report’ requires one of: inventory, revenue or profit')
-
-
-def validate_database(database):
-    if database != None:
-        if database not in ('bought', 'sold', 'products'):
-            raise ValueError(
-                'The argument ‘--database’ requires one of: bought, sold or products')
-
-
-def validate_export_format(export_format):
-    if export_format != None:
-        if export_format not in ('csv', 'json', 'xlsx'):
-            raise ValueError(
-                'The ‘--export_format’ argument requires one of: csv, json or xlsx')
-
-
 def validate_expiration_date(date):
     if date != None:
         if len(date) != 10:

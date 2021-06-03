@@ -1,4 +1,4 @@
-# python super.py sell --product-name orange --price 2
+# python ./super.py sell --product-name orange --price 2
 
 import sys
 
