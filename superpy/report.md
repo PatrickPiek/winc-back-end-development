@@ -1,4 +1,4 @@
-## SuperPy Report
+# Report
 
 A short, 300-word report that highlights three technical elements of your implementation that you find notable
 
