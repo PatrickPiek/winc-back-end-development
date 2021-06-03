@@ -20,6 +20,7 @@
     -   `pip install python-barcode`
     -   `pip install "python-barcode[images]"`
 -   [x] rich (https://rich.readthedocs.io/en/stable/introduction.html) [only for clean debug output]
+    -   `pip install rich`
 -   [x] sys (https://docs.python.org/3/library/sys.html)
 -   [x] tabulate (https://pypi.org/project/tabulate/)
 -   [x] unittest (https://docs.python.org/3/library/unittest.html)
