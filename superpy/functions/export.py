@@ -80,7 +80,7 @@ def create_json_file(filepath, data):
         json.dump(data, j, sort_keys=True, indent=4, ensure_ascii=False)
 
 
-def make_missing_dir(dir: str = ''):
+def make_missing_dir(dir=''):
     if dir == '':
         raise ValueError('A valid directory name is required')
     try:

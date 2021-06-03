@@ -8,21 +8,22 @@ def filter_list(data=[], column='', keys=[]):
 
 
 def filter_list_by_date(data=[], column='', date=''):
-    if len(data) == 0:
-        return []
 
     if not isinstance(date, datetime):
         raise ValueError('We need a valid datetime object')
+
+    if len(data) == 0:
+        return []
 
     return [d for d in data if d[column] <= date]
 
 
 def filter_list_by_date_range(data=[], column='', start='', end=''):
-    if len(data) == 0:
-        return []
-
     if not isinstance(start, datetime) or not isinstance(end, datetime):
         raise ValueError('We need a valid datetime object')
+
+    if len(data) == 0:
+        return []
 
     return [d for d in data if d[column] >= start and d[column] <= end]
 
