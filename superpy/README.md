@@ -30,28 +30,28 @@ optional arguments:
   --export-format     export inventory: csv, json or xlsx
 ```
 
-### --advance-time
+### `--advance-time`
 
-The internal conception of what day it is. Use `--advance-time 0` to reset the internal day to today’s date.
+The internal conception of what day it is. Use `--advance-time 0` to reset the internal day to today’s date. This option does not require other arguments.
 
 -   `python ./super.py --advance-time 2`
 -   `python ./super.py --advance-time 0`
 
-### Buy
+### `buy`
 
 Record buys products with `buy` and provide `product-name` (short name, lowercase, without spaces), `price` and `expiration-date`.
 
 -   `python ./super.py buy --product-name orange --price 0.8 --expiration-date 2020-05-01`
 -   `python ./super.py buy --product-name peach --price 2.25 --expiration-date 2020-08-01`
 
-### Sell
+### `sell`
 
 Record sells products with `sell` and provide `product-name` (short name, lowercase, without spaces) and `price`.
 
 -   `python ./super.py sell --product-name orange --price 2`
 -   `python ./super.py sell --product-name peach --price 3.95`
 
-### Report: Inventory
+### `report` `inventory`
 
 Report inventory with `report` and `inventory` and provide an optional time argument.
 Use `--export-format <type>` to store the report in the format specified.
@@ -63,7 +63,7 @@ Use `--export-format <type>` to store the report in the format specified.
 -   `python ./super.py report inventory --today --export-format xlsx`
 -   `python ./super.py report inventory --today --export-format json`
 
-### Report: Revenue
+### `report` `revenue`
 
 Report revenue with `report` and `revenue` and provide a required time argument.
 
@@ -74,7 +74,7 @@ Report revenue with `report` and `revenue` and provide a required time argument.
 -   `python ./super.py report revenue --date 2021-06`
 -   `python ./super.py report revenue --date 2021-06-02`
 
-### Report: Profit
+### `report` `profit`
 
 Report revenue with `report` and `profit` and provide a required time argument.
 
@@ -85,7 +85,7 @@ Report revenue with `report` and `profit` and provide a required time argument.
 -   `python ./super.py report profit --date 2021-06`
 -   `python ./super.py report profit --date 2021-06-02`
 
-### Export
+### `export`
 
 Export raw data with `export`, use `--database` to set the database to export and provide an optional time argument.
 Use `--export-format <type>` to store the report in the format specified.

@@ -28,7 +28,7 @@
 -   [x] Use of external text files (CSV) to read and write data
 -   [x] A well-structured and user friendly command-line interface
 -   [x] Clear descriptions of each argument in the --help section
--   [ ] A text file containing a usage guide aimed with peers as the target audience
+-   [x] A text file containing a usage guide aimed with peers as the target audience
 -   [ ] The usage guide should include plenty of examples
 
 ### The application must support:
