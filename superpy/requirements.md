@@ -38,7 +38,7 @@
 -   [x] Reporting revenue and profit over specified time periods
 -   [x] Exporting selections of data to CSV files
 -   [x] Two other additional non-trivial features of your choice
--   [ ] A short, 300-word report that highlights three technically notable elements
+-   [x] A short, 300-word report that highlights three technically notable elements
 
 ### Additional non-trivial features
 
