@@ -1,4 +1,5 @@
 # python ./super.py sell --product-name orange --price 2
+# python ./super.py sell --product-name peach --price 3.95
 
 import sys
 
