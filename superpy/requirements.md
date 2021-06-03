@@ -17,7 +17,8 @@
 -   [x] calendar (https://docs.python.org/3/library/calendar.html)
 -   [x] os.path (https://docs.python.org/3/library/os.path.html)
 -   [x] python-barcode (https://pypi.org/project/python-barcode/)
-        `pip install python-barcode`, `pip install "python-barcode[images]"`
+    -   `pip install python-barcode`
+    -   `pip install "python-barcode[images]"`
 -   [x] rich (https://rich.readthedocs.io/en/stable/introduction.html) [only for clean debug output]
 -   [x] sys (https://docs.python.org/3/library/sys.html)
 -   [x] tabulate (https://pypi.org/project/tabulate/)
