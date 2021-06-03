@@ -103,14 +103,14 @@ class Arguments():
         self.args = parser.parse_args()
         self.vars = vars(self.args)
 
-        # validate inputs
+        # validate date inputs
         validate_expiration_date(self.vars['expiration_date'])
         validate_date(self.vars['date'])
 
-        # parse inputs
+        # parse price inputs
         self.vars['price'] = parse_price(self.vars['price'])
 
-        # display help
+        # display help under certain conditions
         if self.vars['action'] == None and self.vars['advance_time'] == None:
             self.__display_help(parser)
 

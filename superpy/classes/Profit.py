@@ -35,11 +35,10 @@ class Profit():
         self.database_sold = Database(
             config.SOLD_FILE, config.SOLD_FIELDS)
 
-        # --now, --today
+        # parse --now, --today and --yesterday
         today = Today().get_date()
         today = datetime.strptime(today, config.DATE_FORMAT)
 
-        # --yesterday
         if self.args['yesterday'] == True:
             today = Today().get_date()
             today = datetime.strptime(today, config.DATE_FORMAT)
@@ -47,7 +46,7 @@ class Profit():
 
         self.today = today
 
-        # --date <date>
+        # parse --date <date>
         self.date_format = None
         self.date_start = None
         self.date_end = None
@@ -82,19 +81,20 @@ class Profit():
             sold_today = filter_list_by_date(
                 self.database_sold.data, 'sell_date', self.today)
 
-            revenue = 0
+            # calculate profit
+            profit = 0
             for item in sold_today:
-                revenue = revenue + float(item['sell_price'])
+                profit = profit + float(item['sell_price'])
 
             if self.args['now'] == True or self.args['today'] == True:
-                if revenue == 0:
-                    return 'No revenue today so far'
-                return f'Today’s revenue so far: {format_currency(revenue)}'
+                if profit == 0:
+                    return 'No profit today so far'
+                return f'Today’s profit so far: {format_currency(profit)}'
 
             if self.args['yesterday'] == True:
-                if revenue == 0:
-                    return 'No revenue for yesterday'
-                return f'Yesterday’s revenue: {format_currency(revenue)}'
+                if profit == 0:
+                    return 'No profit for yesterday'
+                return f'Yesterday’s profit: {format_currency(profit)}'
 
         sold = filter_list_by_date_range(
             self.database_sold.data, 'sell_date', self.date_start, self.date_end)

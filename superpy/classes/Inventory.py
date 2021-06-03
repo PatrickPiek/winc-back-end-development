@@ -39,7 +39,7 @@ class Inventory():
         self.database_products = Database(
             config.PRODUCTS_FILE, config.PRODUCTS_FIELDS)
 
-        # --now, --today and --yesterday
+        # parse --now, --today and --yesterday
         today = Today().get_date()
         today = datetime.strptime(today, config.DATE_FORMAT)
 
@@ -50,6 +50,7 @@ class Inventory():
 
         self.today = today
 
+        # --export-format
         self.export = self.args['export_format']
 
     def run(self):
@@ -69,24 +70,25 @@ class Inventory():
 
             if len(is_sold) == 0:
 
-                # check if product is already in inventory report
-
+                # check if product_name is already in inventory list
                 in_report = filter_list(
                     inventory, 'product_name', [item['product_name']])
 
+                # check if product_name and buy_price is already in inventory list
                 in_report = filter_list(
                     in_report, 'buy_price', [item['buy_price']])
 
+                # check if product_name, buy_price and expiration_date is already in inventory list
                 in_report = filter_list(
                     in_report, 'expiration_date', [item['expiration_date']])
 
                 if len(in_report) > 0:
-                    # increase count if product already in report
+                    # increase count if product is indeed in the list
                     index = inventory.index(in_report[0])
                     inventory[index]['count'] = inventory[index]['count'] + 1
 
                 else:
-                    # add if product not in report
+                    # add to inventory list if the product
                     inventory.append({
                         'product_name': item['product_name'],
                         'count': 1,
@@ -101,6 +103,8 @@ class Inventory():
 
         report = []
         for item in inventory:
+
+            # additional functionality per requirements
             product = filter_list(
                 self.database_products.data, 'product_name', [item['product_name']])
 
@@ -117,10 +121,13 @@ class Inventory():
         if self.export == 'csv':
             filename = make_filename('report_inventory_', '.csv')
             report_csv(filename, config.INVENTORY_REPORT_FIELDS, report)
+
+        # additional functionality per requirements
         elif self.export == 'xlsx':
             filename = make_filename('report_inventory_', '.xlsx')
             report_xlsx(filename, config.INVENTORY_REPORT_FIELDS, report)
 
+        # additional functionality per requirements
         elif self.export == 'json':
             filename = make_filename('report_inventory_', '.json')
             report_json(filename, report)

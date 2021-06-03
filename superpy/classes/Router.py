@@ -11,16 +11,11 @@ from classes.Today import Today
 
 class Router():
 
-    def __init__(self, args={}):
-
-        if not isinstance(args, dict):
-            raise TypeError('We require a dictionary of commandline arguments')
+    def __init__(self, args):
 
         self.args = args
         self.action = args['action']
         self.report = args['report']
-
-        # print(self.args)
 
     def route(self):
 
@@ -47,11 +42,10 @@ class Router():
             response = Today(self.args).run()
 
         # return response
-
         if response != '':
             print(response)
 
-        if(response[:5] == 'ERROR'):
+        if response[:5] == 'ERROR':
             sys.exit(1)
 
         sys.exit(0)

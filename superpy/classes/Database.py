@@ -88,11 +88,13 @@ class Database():
         if not isinstance(row, dict):
             raise TypeError('The ‘row’ argument is a dictionary of properties')
 
+        # validate column names
         for column in row:
             if column not in self.columns:
                 raise ValueError(
                     f'Column ‘{column}’ is not a valid property for this database')
 
+        # validate required columns
         for column in self.columns:
             if column not in row:
                 raise ValueError(

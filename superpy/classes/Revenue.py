@@ -34,11 +34,10 @@ class Revenue():
         self.database_sold = Database(
             config.SOLD_FILE, config.SOLD_FIELDS)
 
-        # --now, --today
+        # parse --now, --today and --yesterday
         today = Today().get_date()
         today = datetime.strptime(today, config.DATE_FORMAT)
 
-        # --yesterday
         if self.args['yesterday'] == True:
             today = Today().get_date()
             today = datetime.strptime(today, config.DATE_FORMAT)
@@ -46,7 +45,7 @@ class Revenue():
 
         self.today = today
 
-        # --date <date>
+        # parse --date <date>
         self.date_format = None
         self.date_start = None
         self.date_end = None

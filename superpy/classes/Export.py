@@ -45,7 +45,7 @@ class Export():
             self.database = Database(
                 config.PRODUCTS_FILE, config.PRODUCTS_FIELDS)
 
-        # --now, --today and --yesterday
+        # parse --now, --today and --yesterday
         today = Today().get_date()
         today = datetime.strptime(today, config.DATE_FORMAT)
 
@@ -56,7 +56,7 @@ class Export():
 
         self.today = today
 
-        # --date <date>
+        # parse --date <date>
         self.date_start = None
         self.date_end = None
         self.date = self.args['date']
@@ -83,7 +83,7 @@ class Export():
         # --export-format
         self.export = self.args['export_format']
 
-        # filter
+        # parse filter type
         self.filter = None
         if self.args['now'] == True or \
                 self.args['today'] == True or \
@@ -121,16 +121,16 @@ class Export():
         if len(data) == 0:
             return 'WARNING: No data to export'
 
-        processed = []
+        data_with_formated_dates = []
         for row in data:
-            rowdata = {}
+            columns = {}
             for column in self.database.columns:
                 if column in config.DATE_FIELDS:
-                    rowdata[column] = format_date(row[column])
+                    columns[column] = format_date(row[column])
                 else:
-                    rowdata[column] = row[column]
-            processed.append(rowdata)
-        data = processed
+                    columns[column] = row[column]
+            data_with_formated_dates.append(columns)
+        data = data_with_formated_dates
 
         if self.export == 'csv':
             filename = make_filename(f'export_{self.database_name}_', '.csv')
