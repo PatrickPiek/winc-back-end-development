@@ -14,6 +14,6 @@ Three technical elements of my implementation that are notable.
 
 3. Using functions.py and config.py to remain DRY
 
-    Functions are stored in a `functions` directory and referenced from other files as `from functions.<kind> import <function>`. This works by adding an empty file with the filename `__init__.py` to the `functions` directory. Functions of the same kind are stored in the same file. There are, for example, date related functions in `date.py` and filter funtions in `filter.py`. When certain code is easy to separate from the whole and is used often, it’s best to create a separate function for it. This helps to keep the code DRY.
+    Functions are stored in a `functions` directory and referenced from other files as `from functions.<category> import <function>`. This works by adding an empty file with the filename `__init__.py` to the `functions` directory. Functions of the same category are stored in the same file. There are, for example, date related functions in `date.py` and filter funtions in `filter.py`. When certain code is easy to separate from the whole and is used often, it’s best to create a separate function for it. This helps to keep the code DRY.
 
     Most configurations data such as filenames, fieldnames and date formats are stored in `config.py`. This also helps to keep the code DRY and allows for easy changes if needed.
