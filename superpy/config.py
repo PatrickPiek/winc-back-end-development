@@ -3,6 +3,7 @@
 BARCODES_DIR = 'barcodes'
 DATABASES_DIR = 'databases'
 REPORTS_DIR = 'reports'
+EXPORTS_DIR = 'exports'
 
 BOUGHT_FILE = 'bought.csv'
 BOUGHT_FIELDS = [

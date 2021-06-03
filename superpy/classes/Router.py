@@ -1,6 +1,7 @@
 import sys
 
 from classes.Buy import Buy
+from classes.Export import Export
 from classes.Inventory import Inventory
 from classes.Profit import Profit
 from classes.Revenue import Revenue
@@ -36,6 +37,9 @@ class Router():
 
             if self.report == 'profit':
                 response = Profit(self.args).run()
+
+        if self.action == 'export':
+            response = Export(self.args).run()
 
         if self.args['advance_time'] != None:
             response = Today(self.args).run()

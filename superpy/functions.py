@@ -122,52 +122,71 @@ def date_as_string(date=''):
         raise ValueError('We need a valid datetime object')
 
 
-def create_csv_file(filename, fieldnames, data):
+def export_csv(filename, fieldnames, data):
+    directory = config.EXPORTS_DIR
+    make_missing_dir(directory)
+    filepath = abspath(f'./{directory}/{filename}')
+    create_csv_file(filepath, fieldnames, data)
 
+
+def export_xlsx(filename, fieldnames, data):
+    directory = config.EXPORTS_DIR
+    make_missing_dir(directory)
+    filepath = abspath(f'./{directory}/{filename}')
+    create_xlsx_file(filepath, fieldnames, data)
+
+
+def export_json(filename, data):
+    directory = config.EXPORTS_DIR
+    make_missing_dir(directory)
+    filepath = abspath(f'./{directory}/{filename}')
+    create_json_file(filepath, data)
+
+
+def report_csv(filename, fieldnames, data):
     directory = config.REPORTS_DIR
     make_missing_dir(directory)
     filepath = abspath(f'./{directory}/{filename}')
+    create_csv_file(filepath, fieldnames, data)
 
-    with open(filepath, mode='w+') as csv_file:
 
+def report_xlsx(filename, fieldnames, data):
+    directory = config.REPORTS_DIR
+    make_missing_dir(directory)
+    filepath = abspath(f'./{directory}/{filename}')
+    create_xlsx_file(filepath, fieldnames, data)
+
+
+def report_json(filename, data):
+    directory = config.REPORTS_DIR
+    make_missing_dir(directory)
+    filepath = abspath(f'./{directory}/{filename}')
+    create_json_file(filepath, data)
+
+
+def create_csv_file(filepath, fieldnames, data):
+    with open(filepath, mode='w+') as f:
         file_ref = csv.DictWriter(
-            csv_file, fieldnames=fieldnames, delimiter=',', doublequote=True, escapechar='\\',
+            f, fieldnames=fieldnames, delimiter=',', doublequote=True, escapechar='\\',
             lineterminator='\r\n', quotechar='"', quoting=csv.QUOTE_MINIMAL, skipinitialspace=True,
             strict=True)
-
         file_ref.writeheader()
-
         for row in data:
             file_ref.writerow(row)
 
 
-def create_xlsx_file(filename: str, headers: list, items: dict):
-
-    # adapted from: https://stackoverflow.com/questions/14637853/how-do-i-output-a-list-of-dictionaries-to-an-excel-sheet/30357389
-
-    directory = config.REPORTS_DIR
-    make_missing_dir(directory)
-    filepath = abspath(f'./{directory}/{filename}')
-
-    with xlsxwriter.Workbook(filepath) as workbook:
-
-        worksheet = workbook.add_worksheet()
+def create_xlsx_file(filepath, headers, data):
+    with xlsxwriter.Workbook(filepath) as w:
+        worksheet = w.add_worksheet()
         worksheet.write_row(row=0, col=0, data=headers)
-
-        for index, item in enumerate(items):
+        for index, item in enumerate(data):
             row = map(lambda field_id: item.get(field_id, ''), headers)
             worksheet.write_row(row=index + 1, col=0, data=row)
 
 
-def create_json_file(filename: str, data: dict):
-
-    directory = config.REPORTS_DIR
-    make_missing_dir(directory)
-    filepath = abspath(f'./{directory}/{filename}')
-
-    with open(filepath, 'w+') as json_file:
-        json.dump(data, json_file, sort_keys=True,
-                  indent=4, ensure_ascii=False)
+def create_json_file(filepath, data):
+    with open(filepath, 'w+') as j:
+        json.dump(data, j, sort_keys=True, indent=4, ensure_ascii=False)
 
 
 def make_missing_dir(dir: str = ''):

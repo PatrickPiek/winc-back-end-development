@@ -1,8 +1,8 @@
 # super.py report inventory --now
 # super.py report inventory --today
-# super.py report inventory --today --export csv
-# super.py report inventory --today --export xlsx
-# super.py report inventory --today --export json
+# super.py report inventory --today --export-format csv
+# super.py report inventory --today --export-format xlsx
+# super.py report inventory --today --export-format json
 
 from datetime import datetime
 from datetime import timedelta
@@ -14,9 +14,9 @@ import config
 from classes.Database import Database
 from classes.Today import Today
 
-from functions import create_csv_file
-from functions import create_json_file
-from functions import create_xlsx_file
+from functions import report_csv
+from functions import report_json
+from functions import report_xlsx
 from functions import filter_list
 from functions import filter_list_by_date
 from functions import format_date
@@ -46,7 +46,7 @@ class Inventory():
 
         self.today = today
 
-        self.export = self.args['export']
+        self.export = self.args['export_format']
 
     def run(self):
 
@@ -121,15 +121,15 @@ class Inventory():
 
     def export_csv(self, data):
         filename = make_filename('report_inventory_', '.csv')
-        create_csv_file(filename, config.INVENTORY_REPORT_FIELDS, data)
+        report_csv(filename, config.INVENTORY_REPORT_FIELDS, data)
 
     def export_xlsx(self, data):
         filename = make_filename('report_inventory_', '.xlsx')
-        create_xlsx_file(filename, config.INVENTORY_REPORT_FIELDS, data)
+        report_xlsx(filename, config.INVENTORY_REPORT_FIELDS, data)
 
     def export_json(self, data):
         filename = make_filename('report_inventory_', '.json')
-        create_json_file(filename, data)
+        report_json(filename, data)
 
 
 def main():

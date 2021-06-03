@@ -16,74 +16,72 @@ class Arguments():
         parser.add_argument('action',
                             type=str,
                             action='store',
-                            metavar='action',
-                            help='the action to perform (buy, sell or report)',
+                            help='the action to perform: buy, sell, report or export',
                             nargs='?',
                             )
 
         parser.add_argument('report',
                             type=str,
                             action='store',
-                            metavar='report',
-                            help='the report action to perform (inventory, revenue or profit)',
+                            help='the report action to perform: inventory, revenue or profit',
                             nargs='?',
+                            )
+
+        parser.add_argument('--database',
+                            type=str,
+                            action='store',
+                            help='the database to export: bought, sold or products',
                             )
 
         parser.add_argument('--product-name',
                             type=str,
                             action='store',
-                            metavar='',
-                            help='the name of the product to buy or sell (e.g. orange)',
+                            help='the short name of the product to buy or sell (e.g. ‘orange’)',
                             )
 
         parser.add_argument('--price',
                             type=convert_to_price,
                             action='store',
-                            metavar='',
-                            help='the price of the product to buy or sell (e.g. 2.95)',
+                            help='the price of the product to buy or sell (e.g. ‘2.95’)',
                             )
 
         parser.add_argument('--expiration-date',
                             type=convert_to_date,
                             action='store',
-                            metavar='',
-                            help='the expiration date of the product to buy or sell (yyyy-mm-dd)',
+                            help='the expiration date of the product to buy or sell; format as ‘yyyy-mm-dd’',
                             )
 
         parser.add_argument('--advance-time',
                             type=int,
                             action='store',
-                            metavar='',
-                            help='advance the time by n days (n >= 0)',
+                            help='advance the time by n days; where n >= 0; 0 will reset to today’s date',
                             )
 
         parser.add_argument('--now',
                             action='store_true',
-                            help='report argumen to report on current figures',
+                            help='create report based on current data; relative to ‘today’ setting',
                             )
 
         parser.add_argument('--yesterday',
                             action='store_true',
-                            help='report argument to report on yesterday’s figures',
+                            help='create report based on yesterday’s data; relative to ‘today’ setting',
                             )
 
         parser.add_argument('--today',
                             action='store_true',
-                            help='report argument to report on today’s figures',
+                            help='create report on today’s data; relative to ‘today’ setting',
                             )
 
         parser.add_argument('--date',
                             type=str,
                             action='store',
-                            metavar='',
-                            help='report argument (a date formatted as yyyy, yyyy-mm or yyyy-mm-dd)',
+                            help='report argument; format as ‘yyyy’, ‘yyyy-mm’ or ‘yyyy-mm-dd’',
                             )
 
-        parser.add_argument('--export',
+        parser.add_argument('--export-format',
                             type=is_valid_export_type,
                             action='store',
-                            metavar='',
-                            help='export report (csv, json or xlsx)',
+                            help='export inventory: csv, json or xlsx',
                             )
 
         self.args = parser.parse_args()
