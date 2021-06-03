@@ -16,7 +16,7 @@
 
 -   [x] calendar (https://docs.python.org/3/library/calendar.html)
 -   [x] os.path (https://docs.python.org/3/library/os.path.html)
--   [x] python-barcode (https://pypi.org/project/python-barcode/)
+-   [x] python-barcode (https://pypi.org/project/python-barcode/) `pip install python-barcode`, `pip install "python-barcode[images]"`
 -   [x] rich (https://rich.readthedocs.io/en/stable/introduction.html) [only for clean debug output]
 -   [x] sys (https://docs.python.org/3/library/sys.html)
 -   [x] tabulate (https://pypi.org/project/tabulate/)
@@ -43,5 +43,5 @@
 ### Additional non-trivial features
 
 -   [x] 1: Export report as a JSON or Excel file
--   [x] 2: Generate a unique EAN-13 barcode for each new product and store in products database
+-   [x] 2: Generate a unique EAN-13 barcode for a new product and store products in a separate database
 -   [x] 3: Store new barcodes in a barcodes directory
