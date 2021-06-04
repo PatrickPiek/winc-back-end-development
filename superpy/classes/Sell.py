@@ -55,7 +55,7 @@ class Sell():
 
         inventory = sort_list(inventory, 'expiration_date')
 
-        if self.database_sold.rowcount == 0:
+        if self.database_sold.rowcount == 1:
             return inventory[0]['id']
 
         for item in inventory:
