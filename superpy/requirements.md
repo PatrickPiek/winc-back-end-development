@@ -36,7 +36,7 @@
 -   [x] A text file containing a usage guide aimed with peers as the target audience
 -   [x] The usage guide should include plenty of examples
 -   [x] A short, 300-word report that highlights three technically notable elements
--   
+
 ### The application must support:
 
 -   [x] Setting and advancing the date that the application perceives as ‘today’
