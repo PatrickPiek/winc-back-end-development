@@ -122,12 +122,10 @@ class Inventory():
             filename = make_filename('report_inventory_', '.csv')
             report_csv(filename, config.INVENTORY_REPORT_FIELDS, report)
 
-        # additional functionality per requirements
         elif self.export == 'xlsx':
             filename = make_filename('report_inventory_', '.xlsx')
             report_xlsx(filename, config.INVENTORY_REPORT_FIELDS, report)
 
-        # additional functionality per requirements
         elif self.export == 'json':
             filename = make_filename('report_inventory_', '.json')
             report_json(filename, report)
