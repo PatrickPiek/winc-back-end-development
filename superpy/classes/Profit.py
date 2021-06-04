@@ -84,7 +84,15 @@ class Profit():
             # calculate profit
             profit = 0
             for item in sold_today:
-                profit = profit + float(item['sell_price'])
+                bought_for = 0
+                bought_item = filter_list(
+                    self.database_bought.data, 'id', [item['bought_id']])
+
+                if len(bought_item) > 0:
+                    bought_for = bought_item[0]['buy_price']
+
+                profit = profit + \
+                    (float(item['sell_price']) - float(bought_for))
 
             if self.args['now'] == True or self.args['today'] == True:
                 if profit == 0:
