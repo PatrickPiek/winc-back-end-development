@@ -39,14 +39,14 @@ The internal conception of what day it is. Use `--advance-time 0` to reset the i
 
 ### `buy`
 
-Record buys products with `buy` and provide `product-name` (short name, lowercase, without spaces), `price` and `expiration-date`.
+Record buys of products with `buy` and provide `product-name` (short name, lowercase, without spaces), `price` and `expiration-date`.
 
 -   `python ./super.py buy --product-name orange --price 0.8 --expiration-date 2020-05-01`
 -   `python ./super.py buy --product-name peach --price 2.25 --expiration-date 2020-08-01`
 
 ### `sell`
 
-Record sells products with `sell` and provide `product-name` (short name, lowercase, without spaces) and `price`.
+Record sells of products with `sell` and provide `product-name` (short name, lowercase, without spaces) and `price`.
 
 -   `python ./super.py sell --product-name orange --price 2`
 -   `python ./super.py sell --product-name peach --price 3.95`
