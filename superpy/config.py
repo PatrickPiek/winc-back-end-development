@@ -1,10 +1,10 @@
-# Database field definitions
-
+# Directories
 BARCODES_DIR = 'barcodes'
 DATABASES_DIR = 'databases'
 REPORTS_DIR = 'reports'
 EXPORTS_DIR = 'exports'
 
+# Database names and fields
 BOUGHT_FILE = 'bought.csv'
 BOUGHT_FIELDS = [
     'id',               # number, auto increment from 1
@@ -35,12 +35,14 @@ TODAY_FIELDS = [
     'today',            # date in yyyy-mm-dd
 ]
 
+# Date fields to process with datetime
 DATE_FIELDS = [
     'buy_date',
     'sell_date',
     'expiration_date',
 ]
 
+# Date formats
 DATE_FORMAT = '%Y-%m-%d'
 YEAR_MONTH_FORMAT = '%Y-%m'
 YEAR_FORMAT = '%Y'
@@ -51,6 +53,7 @@ REPORT_YEAR_FORMAT = YEAR_FORMAT
 
 DATE_FORMAT_FILENAME = '%Y%m%d_%H%M%S'
 
+# Report fieldnames
 INVENTORY_REPORT_FIELDS = [
     'Product Name',
     'Count',
@@ -61,4 +64,5 @@ INVENTORY_REPORT_FIELDS = [
     'EAN13'
 ]
 
+# Unique prefix for barcodes generated for this supermarket
 STORE_BARCODE_PREFIX = '123456'
