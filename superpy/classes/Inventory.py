@@ -88,7 +88,7 @@ class Inventory():
                     inventory[index]['count'] = inventory[index]['count'] + 1
 
                 else:
-                    # add to inventory list if the product
+                    # add to inventory list
                     inventory.append({
                         'product_name': item['product_name'],
                         'count': 1,
