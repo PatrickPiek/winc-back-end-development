@@ -88,7 +88,7 @@ class Inventory():
                     inventory[index]['count'] = inventory[index]['count'] + 1
 
                 else:
-                    # add to inventory list if the product
+                    # add to inventory list
                     inventory.append({
                         'product_name': item['product_name'],
                         'count': 1,
@@ -122,12 +122,10 @@ class Inventory():
             filename = make_filename('report_inventory_', '.csv')
             report_csv(filename, config.INVENTORY_REPORT_FIELDS, report)
 
-        # additional functionality per requirements
         elif self.export == 'xlsx':
             filename = make_filename('report_inventory_', '.xlsx')
             report_xlsx(filename, config.INVENTORY_REPORT_FIELDS, report)
 
-        # additional functionality per requirements
         elif self.export == 'json':
             filename = make_filename('report_inventory_', '.json')
             report_json(filename, report)

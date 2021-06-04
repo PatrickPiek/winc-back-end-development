@@ -1,4 +1,4 @@
-## SuperPy Requirements
+# SuperPy Requirements
 
 ### Well-structured and documented code:
 
@@ -35,6 +35,7 @@
 -   [x] Clear descriptions of each argument in the --help section
 -   [x] A text file containing a usage guide aimed with peers as the target audience
 -   [x] The usage guide should include plenty of examples
+-   [x] A short, 300-word report that highlights three technically notable elements
 
 ### The application must support:
 
@@ -43,7 +44,6 @@
 -   [x] Reporting revenue and profit over specified time periods
 -   [x] Exporting selections of data to CSV files
 -   [x] Two other additional non-trivial features of your choice
--   [x] A short, 300-word report that highlights three technically notable elements
 
 ### Additional non-trivial features
 
