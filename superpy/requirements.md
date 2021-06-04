@@ -1,4 +1,4 @@
-## SuperPy Requirements
+# SuperPy Requirements
 
 ### Well-structured and documented code:
 
