@@ -54,7 +54,7 @@ Record sells of products with `sell` and provide `product-name` (short name, low
 ### `report` `inventory`
 
 Report inventory with `report` and `inventory` and provide an optional time argument.
-Use `--export-format <type>` to store the report in the format specified.
+Use `export-format <type>` to store the report in the format specified.
 
 -   `python ./super.py report inventory`
 -   `python ./super.py report inventory --now`
@@ -87,8 +87,8 @@ Report revenue with `report` and `profit` and provide a required time argument.
 
 ### `export`
 
-Export raw data with `export`, use `--database` to set the database to export and provide an optional time argument.
-Use `--export-format <type>` to store the report in the format specified.
+Export raw data with `export`, use `database` to set the database to export and provide an optional time argument.
+Use `export-format <type>` to store the report in the format specified.
 
 -   `python ./super.py export --database bought --today --export-format csv`
 -   `python ./super.py export --database bought --yesterday --export-format csv`
