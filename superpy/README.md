@@ -1,25 +1,34 @@
 # SuperPy
 
-A command-line tool that supermarkets use to keep track of their inventory.
+A command-line tool written in Python 3 that supermarkets use to keep track of their inventory.
+
+## Requirements
+
+-   Python version 3.9.5 or newer
+    -   `python --version`
+-   Modules from The Python Standard Library and some additional modules as described in this README
 
 ## Used Modules
 
--   [x] csv
--   [x] argparse
--   [x] datetime
--   [x] calendar (https://docs.python.org/3/library/calendar.html)
--   [x] os.path (https://docs.python.org/3/library/os.path.html)
--   [x] python-barcode (https://pypi.org/project/python-barcode/)
+-   argparse (https://docs.python.org/3/library/argparse.html)
+-   calendar (https://docs.python.org/3/library/calendar.html)
+-   csv (https://docs.python.org/3/library/csv.html)
+-   datetime (https://docs.python.org/3/library/datetime.html)
+-   os.path (https://docs.python.org/3/library/os.path.html)
+-   python-barcode (https://pypi.org/project/python-barcode/)
     -   `pip install python-barcode`
     -   `pip install "python-barcode[images]"`
--   [x] rich (https://rich.readthedocs.io/en/stable/introduction.html) [only for clean debug output]
+-   rich (https://rich.readthedocs.io/en/stable/introduction.html)
     -   `pip install rich`
--   [x] sys (https://docs.python.org/3/library/sys.html)
--   [x] tabulate (https://pypi.org/project/tabulate/)
+-   sys (https://docs.python.org/3/library/sys.html)
+-   tabulate (https://pypi.org/project/tabulate/)
     -   `pip install tabulate`
--   [x] unittest (https://docs.python.org/3/library/unittest.html)
--   [x] xlsxwriter (https://xlsxwriter.readthedocs.io/)
+-   unittest (https://docs.python.org/3/library/unittest.html)
+-   xlsxwriter (https://xlsxwriter.readthedocs.io/)
     -   `pip install XlsxWriter`
+
+Note: depending on your python installation, install modules with `pip install <module>` or `pip3 install <module>`.
+Or, use the absolute path to pip/pip3: `/usr/local/bin/pip install <module>` or `/usr/local/bin/pip3 install <module>`.
 
 ## Commandline Options
 
