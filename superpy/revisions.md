@@ -1,5 +1,8 @@
 ## Revisions based on feedback on the assignment
 
+SuperPy:
+-   https://github.com/thisisleonist/winc-back-end-development/blob/master/superpy
+
 Added feedback to cli when the internal representation of today is changed with `--advance-time`:
 -   https://github.com/thisisleonist/winc-back-end-development/blob/master/superpy/classes/Today.py#L42
 
