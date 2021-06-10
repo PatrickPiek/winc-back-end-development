@@ -2,6 +2,25 @@
 
 A command-line tool that supermarkets use to keep track of their inventory.
 
+## Used Modules
+
+-   [x] csv
+-   [x] argparse
+-   [x] datetime
+-   [x] calendar (https://docs.python.org/3/library/calendar.html)
+-   [x] os.path (https://docs.python.org/3/library/os.path.html)
+-   [x] python-barcode (https://pypi.org/project/python-barcode/)
+    -   `pip install python-barcode`
+    -   `pip install "python-barcode[images]"`
+-   [x] rich (https://rich.readthedocs.io/en/stable/introduction.html) [only for clean debug output]
+    -   `pip install rich`
+-   [x] sys (https://docs.python.org/3/library/sys.html)
+-   [x] tabulate (https://pypi.org/project/tabulate/)
+    -   `pip install tabulate`
+-   [x] unittest (https://docs.python.org/3/library/unittest.html)
+-   [x] xlsxwriter (https://xlsxwriter.readthedocs.io/)
+    -   `pip install XlsxWriter`
+
 ## Commandline Options
 
 -   `python super.py -h` or `python super.py --help`
