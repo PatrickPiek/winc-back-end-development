@@ -10,10 +10,18 @@ import xlsxwriter
 
 
 def make_filename(prefix='', suffix=''):
+    """Generates a filename using today’s date and time,
+    see (config.DATE_FORMAT_FILENAME
+    Prepends a string prefix
+    Appends a string suffix
+    Returns a string: export_sold_20210610_090523.json where
+    'export_sold_' is the prefix and '.json' the suffix
+    """
     return f'{prefix}{datetime.today().strftime(config.DATE_FORMAT_FILENAME)}{suffix}'
 
 
 def export_csv(filename, fieldnames, data):
+    """Exports fields in data, defined in fieldnames, as CSV to a file"""
     directory = config.EXPORTS_DIR
     make_missing_dir(directory)
     filepath = abspath(f'./{directory}/{filename}')
@@ -21,6 +29,7 @@ def export_csv(filename, fieldnames, data):
 
 
 def export_xlsx(filename, fieldnames, data):
+    """Exports fields in data, defined in fieldnames, as Excel XML to a file"""
     directory = config.EXPORTS_DIR
     make_missing_dir(directory)
     filepath = abspath(f'./{directory}/{filename}')
@@ -28,6 +37,7 @@ def export_xlsx(filename, fieldnames, data):
 
 
 def export_json(filename, data):
+    """Exports fields in data, defined in fieldnames, as JSON data to a file"""
     directory = config.EXPORTS_DIR
     make_missing_dir(directory)
     filepath = abspath(f'./{directory}/{filename}')
@@ -35,6 +45,7 @@ def export_json(filename, data):
 
 
 def report_csv(filename, fieldnames, data):
+    """Exports a report with fields in data, defined in fieldnames, as CSV to a file"""
     directory = config.REPORTS_DIR
     make_missing_dir(directory)
     filepath = abspath(f'./{directory}/{filename}')
@@ -42,6 +53,7 @@ def report_csv(filename, fieldnames, data):
 
 
 def report_xlsx(filename, fieldnames, data):
+    """Exports a report with fields in data, defined in fieldnames, as Excel XML to a file"""
     directory = config.REPORTS_DIR
     make_missing_dir(directory)
     filepath = abspath(f'./{directory}/{filename}')
@@ -49,6 +61,7 @@ def report_xlsx(filename, fieldnames, data):
 
 
 def report_json(filename, data):
+    """Exports a report with fields in data, defined in fieldnames, as JSON data to a file"""
     directory = config.REPORTS_DIR
     make_missing_dir(directory)
     filepath = abspath(f'./{directory}/{filename}')
@@ -81,6 +94,7 @@ def create_json_file(filepath, data):
 
 
 def make_missing_dir(dir=''):
+    """Checks if a directory is missing and creates one when needed"""
     if dir == '':
         raise ValueError('A valid directory name is required')
     try:

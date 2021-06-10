@@ -14,6 +14,11 @@ from functions.args import check_required_arguments
 
 
 class Sell():
+    """Handles the SuperPy sell action
+    Uses the bought and products database to record the sell action
+    Sold products that are in inventory are stored in the sold database
+    The product with the earliest expiration date is sold first
+    """
 
     def __init__(self, args):
 
@@ -53,6 +58,7 @@ class Sell():
         if len(inventory) == 0:
             return None
 
+        # sell the product with the earliest expiration date
         inventory = sort_list(inventory, 'expiration_date')
 
         if len(inventory) == 1:

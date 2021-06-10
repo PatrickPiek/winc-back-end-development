@@ -4,6 +4,11 @@ import config
 
 
 def validate_expiration_date(date):
+    """Function called after argparse to validate CLI --expiration-date input
+
+    Requires to be:
+    a valid full date, see config.DATE_FORMAT
+    """
     if date != None:
         if len(date) != 10:
             raise ValueError(
@@ -16,6 +21,13 @@ def validate_expiration_date(date):
 
 
 def validate_date(date):
+    """Function called after argparse to validate CLI --date input
+
+    Requires to be:
+    a valid year (4 digits), see config.YEAR_FORMAT,
+    a valid year and month (7 digits), see config.YEAR_MONTH_FORMAT
+    or a valid full date (10 digits), see config.DATE_FORMAT
+    """
     if date != None:
         if len(date) not in (4, 7, 10):
             raise ValueError(

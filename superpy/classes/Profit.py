@@ -26,6 +26,11 @@ from functions.filter import filter_list_by_date_range
 
 
 class Profit():
+    """Calculate profit and return the value to CLI
+    Uses the bought and sold database
+    Products that are bought and sold within a specific timeframe are calculated
+    Calculation is based on the --now, --today --yesterday or --date argument
+    """
 
     def __init__(self, args):
 

@@ -13,6 +13,12 @@ from functions.args import check_required_arguments
 
 
 class Buy():
+    """Handles the SuperPy buy action
+    Uses the bought and products database to record the buy action
+    New products are added to the product database,
+      complete with a new EAN13 barcode
+    Bought products are then stored in the bought database
+    """
 
     def __init__(self, args):
 
@@ -31,6 +37,7 @@ class Buy():
 
     def run(self):
 
+        # check id product exists in product database
         product = filter_list(
             self.database_products.data, 'product_name', [self.product_name])
 
@@ -38,16 +45,21 @@ class Buy():
 
         if len(product) == 0:
 
+            # generate a new barcode
             barcode = Barcode(config.STORE_BARCODE_PREFIX)
 
+            # add product to products database
             self.database_products.add({
                 'product_name':     self.product_name,
                 'full_name':        self.product_name.title(),
                 'ean13':            barcode,
             })
         else:
+
+            # use preexisting barcode
             barcode = product[0]['ean13']
 
+        # add buy to bought database
         self.database_bought.add(
             {
                 'id':               self.database_bought.rowcount + 1,

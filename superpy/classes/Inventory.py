@@ -25,6 +25,15 @@ from functions.sort import sort_list
 
 
 class Inventory():
+    """Report on inventory and return a table report to CLI
+    Exports the same report data to a file with the --export-format argument
+    Uses the bought, sold and products database
+    Products that are bought, but not sold, are in inventory
+    Products that are in inventory, but are expired, are listed as expired
+    Products in inventory with the same buy_price and expiration_date
+      are listed once and counted
+    Barcodes are listed for each unique product in inventory
+    """
 
     def __init__(self, args):
 
@@ -104,7 +113,7 @@ class Inventory():
         report = []
         for item in inventory:
 
-            # additional functionality per requirements
+            # get full product name from products database
             product = filter_list(
                 self.database_products.data, 'product_name', [item['product_name']])
 

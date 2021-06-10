@@ -10,6 +10,11 @@ from functions.validate import validate_expiration_date
 
 
 class Arguments():
+    """Parses commandline arguments for SuperPy
+    Validates date input from --date and --expiration-date arguments
+    Parses price input from --price argument
+    Formats and displays SuperPy help (-h, --help) under certain conditions
+    """
 
     def __init__(self):
 

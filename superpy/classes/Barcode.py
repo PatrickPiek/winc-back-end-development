@@ -12,6 +12,10 @@ from functions.export import make_missing_dir
 
 
 class Barcode():
+    """Generates a valid EAN13 barcode with checksum
+    Stores a barcode image in PNG-format to a barcodes directory
+    for use in supermarket product display and Cash register
+    """
 
     def __init__(self, prefix):
 

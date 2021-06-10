@@ -12,6 +12,10 @@ from functions.date import format_date
 
 
 class Today():
+    """Handles the SuperPy --advance-time
+    Updates the internal date representation of today’ date for use
+      with date calculations in reporting inventory, revenue or profit
+    """
 
     def __init__(self, args={}):
 
@@ -36,6 +40,7 @@ class Today():
         self.today.data = [{'today': format_date(today)}]
         self.today.save()
 
+        # suppress CLI output when initializing the today database
         if hasattr(self.args, 'init'):
             return ''
 

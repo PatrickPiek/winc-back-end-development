@@ -25,6 +25,12 @@ from functions.filter import filter_list_by_date_range
 
 
 class Export():
+    """Export raw data from CSV database files
+    Uses bought, sold and products database
+    Filters raw data based on CLI --date argument
+    Outputs data to a CSV, XLSX or JSON file
+      based on CLI --export-format argument
+    """
 
     def __init__(self, args):
 
@@ -96,6 +102,7 @@ class Export():
 
         data = []
 
+        # filter data from bought database
         if self.database_name == 'bought':
             if self.filter == 'range':
                 data = filter_list_by_date_range(
@@ -106,6 +113,7 @@ class Export():
             else:
                 data = self.database.data
 
+        # filter data from sold database
         elif self.database_name == 'sold':
             if self.filter == 'range':
                 data = filter_list_by_date_range(
@@ -116,11 +124,14 @@ class Export():
             else:
                 data = self.database.data
         else:
+            # use data from products database
             data = self.database.data
 
         if len(data) == 0:
             return 'ERROR: No data to export'
 
+        # convert datetime objects to string dates for date fields
+        # see config.DATE_FIELDS
         data_with_formatted_dates = []
         for row in data:
             columns = {}
@@ -132,6 +143,7 @@ class Export():
             data_with_formatted_dates.append(columns)
         data = data_with_formatted_dates
 
+        # export data to a file in the required format
         if self.export == 'csv':
             filename = make_filename(f'export_{self.database_name}_', '.csv')
             export_csv(filename, self.database.columns, data)

@@ -13,7 +13,7 @@ import sys
 
 
 def main():
-
+    
     Today().get_date()
 
     arguments = Arguments()
