@@ -39,7 +39,10 @@ class Today():
         if hasattr(self.args, 'init'):
             return ''
 
-        return 'OK'
+        if days == 0:
+            return f'OK. The SuperPy internal date for ‘today’ is reset to today’s date: {format_date(today)}'
+
+        return f'OK. The SuperPy internal date for ‘today’ is now: {format_date(today)} (+{days})'
 
     def get_date(self):
 

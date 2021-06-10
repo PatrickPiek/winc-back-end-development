@@ -6,10 +6,10 @@ import config
 
 def convert_to_date(value=''):
     try:
-        return datetime.strptime(value, '%Y')
+        return datetime.strptime(value, config.YEAR_FORMAT)
     except ValueError:
         try:
-            return datetime.strptime(value, '%Y-%m')
+            return datetime.strptime(value, config.YEAR_MONTH_FORMAT)
         except ValueError:
             try:
                 return datetime.strptime(value, config.DATE_FORMAT)
