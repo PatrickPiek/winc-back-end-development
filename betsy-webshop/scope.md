@@ -12,9 +12,9 @@ Scope of Assignment:
 * Model:
 
 User (
-	id as int
-	name as varchar(256)
-	address as varchar(512)
+	- id as int
+	- name as varchar(256)
+	- address as varchar(512)
 	zipcode as varchar(32)
 	city as varchar(256)
 	country as varchar(256)
