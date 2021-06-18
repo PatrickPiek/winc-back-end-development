@@ -57,7 +57,8 @@ class Barcode():
         self.prefix = prefix
         self.code = code
         self.checksum = [self.__calculate_checksum()]
-        self.ean = ''.join([str(digit) for digit in (self.code + self.checksum)])
+        self.ean = ''.join([str(digit)
+                           for digit in (self.code + self.checksum)])
 
         # generate barcode image
         self.__generate_barcode_image(self.ean)
