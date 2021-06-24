@@ -11,13 +11,13 @@ class BaseModule(Model):
 
 
 class Tag(BaseModule):
-    id = AutoField(primary_key=True)
-    name = CharField(unique=True, null=False)
+    # id = AutoField(primary_key=True)
+    name = CharField(unique=True, null=False, primary_key=True)
 
 
 class User(BaseModule):
-    id = AutoField(primary_key=True)
-    username = CharField(unique=True, null=False)
+    # id = AutoField(primary_key=True)
+    username = CharField(unique=True, null=False, primary_key=True)
     password = CharField(null=False)
     name = CharField(null=False)
     address = CharField()
@@ -30,10 +30,13 @@ class User(BaseModule):
 
 
 class Product(BaseModule):
-    id = AutoField(primary_key=True)
-    name = CharField(null=False)
+    # id = AutoField(primary_key=True)
+    name = CharField(null=False, primary_key=True)
     description = CharField(null=False)
-    price_per_unit = IntegerField(
+    price_per_unit = DecimalField(
+        max_digits=15,
+        decimal_places=2,
+        auto_round=True,
         null=False,
         default=0,
         constraints=[
@@ -49,16 +52,19 @@ class Product(BaseModule):
 
 class Transaction(BaseModule):
     id = AutoField(primary_key=True)
-    buyer = ForeignKeyField(User, null=False)
-    seller = ForeignKeyField(User, null=False)
+    buyer_id = ForeignKeyField(User, null=False)
+    seller_id = ForeignKeyField(User, null=False)
     timestamp = TimestampField(default=datetime.datetime.now)
-    product = ForeignKeyField(Product, null=False)
+    product_id = ForeignKeyField(Product, null=False)
     quantity = IntegerField(
         null=False,
         constraints=[
             Check('quantity >= 1')
         ])
-    price_total = IntegerField(
+    price_total = DecimalField(
+        max_digits=15,
+        decimal_places=2,
+        auto_round=True,
         null=False,
         constraints=[
             Check('price_total >= 0')

@@ -1,12 +1,6 @@
 {
     "folders": [
         {
-            "path": "."
-        },
-        {
-            "path": "../winc-back-end-development-local-only"
-        },
-        {
             "path": "betsy-webshop"
         }
     ],
